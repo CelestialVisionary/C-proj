@@ -1,0 +1,15 @@
+# 编译生成的文件
+*.exe
+*.out
+*.o
+
+# IDE 相关文件
+.vscode/
+.idea/
+
+# 构建目录
+build/
+
+# 操作系统文件
+Thumbs.db
+.DS_Store
