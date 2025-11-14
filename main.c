@@ -1,362 +1,228 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <windows.h>
 #include "struct.h"
 #include "funcation.h"
 
-// æ˜¾ç¤ºè§’è‰²é€‰æ‹©èœå•
+// ÏÔÊ¾½ÇÉ«Ñ¡Ôñ²Ëµ¥
 void showRoleMenu() {
-    printf("\n\t\t===== å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ =====\n");
-    printf("\t\tè¯·é€‰æ‹©ç”¨æˆ·è§’è‰²\n");
-    printf("\t\t1. å­¦ç”Ÿ\n");
-    printf("\t\t2. å¡ç®¡ç†å‘˜\n");
-    printf("\t\t3. ç³»ç»Ÿç®¡ç†å‘˜\n");
-    printf("\t\t0. é€€å‡ºç³»ç»Ÿ\n");
-    printf("\t\t======================\n");
-    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-3)ï¼š");
+    printf("\n===== Ğ£Ô°¿¨¹ÜÀíÏµÍ³ =====\n");
+    printf("ÇëÑ¡ÔñÓÃ»§½ÇÉ«\n");
+    printf("1. Ğ£Ô°¿¨ÓÃ»§\n");
+    printf("2. ¿¨Îñ¹ÜÀíÔ±\n");
+    printf("3. ÏµÍ³¹ÜÀíÔ±\n");
+    printf("0. ÍË³öÏµÍ³\n");
+    printf("==========================\n");
+    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-3)£º");
 }
 
-// æ˜¾ç¤ºå­¦ç”Ÿèœå•
-void showNormalUserMenu() {
-    printf("\n\t\t===== å­¦ç”Ÿèœå• =====\n");
-    printf("\t\t1. æŸ¥çœ‹æˆ‘çš„ä¿¡æ¯\n");
-    printf("\t\t2. æŸ¥è¯¢æˆ‘çš„å¡ç‰‡ä¿¡æ¯\n");
-    printf("\t\t0. è¿”å›è§’è‰²é€‰æ‹©\n");
-    printf("\t\t======================\n");
-    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-2)ï¼š");
+// ÏÔÊ¾Ğ£Ô°¿¨ÓÃ»§²Ëµ¥
+void showUserMenu() {
+    printf("\n===== Ğ£Ô°¿¨ÓÃ»§²Ëµ¥ =====\n");
+    printf("1. ÃÜÂëĞŞ¸Ä\n");
+    printf("2. ²éÑ¯Óà¶î\n");
+    printf("3. ²éÑ¯Ïû·Ñ¼ÇÂ¼\n");
+    printf("4. ¹ÒÊ§/½â¹ÒĞ£Ô°¿¨\n");
+    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("==========================\n");
+    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-4)£º");
 }
 
-// æ˜¾ç¤ºå¡ç®¡ç†å‘˜èœå•
+// ÏÔÊ¾¿¨Îñ¹ÜÀíÔ±²Ëµ¥
 void showCardAdminMenu() {
-    printf("\n\t\t===== å¡ç®¡ç†å‘˜èœå• =====\n");
-    printf("\t\t1. æ·»åŠ å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t2. æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t3. ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t4. æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t5. å­¦ç”Ÿå¡å……å€¼\n");
-    printf("\t\t6. æŒ‚å¤±å­¦ç”Ÿå¡\n");
-    printf("\t\t7. æ¢å¤å­¦ç”Ÿå¡\n");
-    printf("\t\t8. æŸ¥è¯¢å­¦ç”Ÿå¡ä¿¡æ¯\n");
-    printf("\t\t0. è¿”å›è§’è‰²é€‰æ‹©\n");
-    printf("\t\t======================\n");
-    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-8)ï¼š");
+    printf("\n===== ¿¨Îñ¹ÜÀíÔ±²Ëµ¥ =====\n");
+    printf("1. ´´½¨ÓÃ»§\n");
+    printf("2. Ğ£Ô°¿¨³äÖµ\n");
+    printf("3. ÓÃ»§ĞÅÏ¢²éÑ¯¼°ĞŞ¸Ä\n");
+    printf("4. Ğ£Ô°¿¨ÃÜÂëÖØÖÃ\n");
+    printf("5. Ğ£Ô°¿¨ÃÜÂëĞŞ¸Ä\n");
+    printf("6. ¹ÒÊ§/½â¹Ò\n");
+    printf("7. Ğ£Ô°¿¨×¢Ïú\n");
+    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("==========================\n");
+    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-7)£º");
 }
 
-// æ˜¾ç¤ºç³»ç»Ÿç®¡ç†å‘˜èœå•
+// ÏÔÊ¾ÏµÍ³¹ÜÀíÔ±²Ëµ¥
 void showSystemAdminMenu() {
-    printf("\n\t\t===== ç³»ç»Ÿç®¡ç†å‘˜èœå• =====\n");
-    printf("\t\t1. æ·»åŠ å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t2. æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t3. åˆ é™¤å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t4. ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t5. æŒ‰å­¦å·æ’åº\n");
-    printf("\t\t6. æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯\n");
-    printf("\t\t7. å­¦ç”Ÿå¡å……å€¼\n");
-    printf("\t\t8. æŒ‚å¤±å­¦ç”Ÿå¡\n");
-    printf("\t\t9. æ¢å¤å­¦ç”Ÿå¡\n");
-    printf("\t\t10. æŸ¥è¯¢å­¦ç”Ÿå¡ä¿¡æ¯\n");
-    printf("\t\t0. è¿”å›è§’è‰²é€‰æ‹©\n");
-    printf("\t\t==========================\n");
-    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-10)ï¼š");
-}
-
-// æ˜¾ç¤ºæŸ¥æ‰¾èœå•
-void showFindMenu() {
-    printf("\n\t\t===== æŸ¥æ‰¾å­¦ç”Ÿ =====\n");
-    printf("\t\t1. æŒ‰å§“åæŸ¥æ‰¾\n");
-    printf("\t\t2. æŒ‰å­¦å·æŸ¥æ‰¾\n");
-    printf("\t\t0. è¿”å›ä¸»èœå•\n");
-    printf("\t\t====================\n");
-    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-2)ï¼š");
+    printf("\n===== ÏµÍ³¹ÜÀíÔ±²Ëµ¥ =====\n");
+    printf("1. Ìí¼Ó¿¨Îñ¹ÜÀíÔ±ÕËºÅ\n");
+    printf("2. É¾³ı¿¨Îñ¹ÜÀíÔ±ÕËºÅ\n");
+    printf("3. ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢\n");
+    printf("4. ²éÑ¯ËùÓĞ¿¨Îñ¹ÜÀíÔ±ĞÅÏ¢\n");
+    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("==========================\n");
+    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-5)£º");
 }
 
 int main() {
-    // è®¾ç½®æ§åˆ¶å°è¾“å‡ºç¼–ç ä¸ºUTF-8ï¼Œè§£å†³ä¸­æ–‡æ˜¾ç¤ºä¹±ç é—®é¢˜
-    SetConsoleOutputCP(CP_UTF8);
-    
-    STS students;
-    initStudentArray(&students);  // åˆå§‹åŒ–å­¦ç”Ÿæ•°ç»„
-    
+    SystemData sys;
+    initSystem(&sys); // ³õÊ¼»¯ÏµÍ³
+
     int roleChoice;
-    while(1) {
-        showRoleMenu();  // æ˜¾ç¤ºè§’è‰²é€‰æ‹©èœå•
+    while (1) {
+        showRoleMenu();
         scanf("%d", &roleChoice);
-        
-        switch(roleChoice) {
-            case 1:  // æ™®é€šç”¨æˆ·
-                {
-                    int normalChoice;
-                    while(1) {
-                        showNormalUserMenu();
-                        scanf("%d", &normalChoice);
-                        
-                        switch(normalChoice) {
-                            case 1:  // æŸ¥çœ‹æˆ‘çš„ä¿¡æ¯
-                                printf("\nè¯·è¾“å…¥æ‚¨çš„å­¦å·ï¼š");
-                                int id;
-                                scanf("%d", &id);
-                                int index = findStudentById(&students, id);
-                                if (index != -1) {
-                                    printf("\n\t\tä¸ªäººä¿¡æ¯æŸ¥è¯¢ç»“æœ\n");
-                                    printf("å§“åï¼š%s\n", students.students[index].name);
-                                    printf("å­¦å·ï¼š%d\n", students.students[index].id);
-                                    printf("æˆç»©ï¼š%.2f\n", students.students[index].score);
-                                    printf("å­¦ç”Ÿå¡å·ï¼š%d\n", students.students[index].cardId);
-                                    printf("å¡ä½™é¢ï¼š%.2f\n", students.students[index].balance);
-                                    printf("å¡çŠ¶æ€ï¼š%s\n", students.students[index].cardStatus ? "æ­£å¸¸" : "æŒ‚å¤±");
-                                } else {
-                                    printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿä¿¡æ¯ï¼\n");
-                                }
-                                break;
-                            case 2:  // æŸ¥è¯¢æˆ‘çš„å¡ç‰‡ä¿¡æ¯
-                                printf("\nè¯·è¾“å…¥æ‚¨çš„å­¦ç”Ÿå¡å·ï¼š");
-                                int cardId;
-                                scanf("%d", &cardId);
-                                int cardIndex = findStudentByCardId(&students, cardId);
-                                if (cardIndex != -1) {
-                                    printf("\n\t\tå¡ç‰‡ä¿¡æ¯æŸ¥è¯¢ç»“æœ\n");
-                                    printf("å§“åï¼š%s\n", students.students[cardIndex].name);
-                                    printf("å­¦å·ï¼š%d\n", students.students[cardIndex].id);
-                                    printf("å­¦ç”Ÿå¡å·ï¼š%d\n", students.students[cardIndex].cardId);
-                                    printf("å¡ä½™é¢ï¼š%.2f\n", students.students[cardIndex].balance);
-                                    printf("å¡çŠ¶æ€ï¼š%s\n", students.students[cardIndex].cardStatus ? "æ­£å¸¸" : "æŒ‚å¤±");
-                                } else {
-                                    printf("æœªæ‰¾åˆ°è¯¥å¡ç‰‡ä¿¡æ¯ï¼\n");
-                                }
-                                break;
-                            case 0:  // è¿”å›è§’è‰²é€‰æ‹©
-                                break;
-                            default:
-                                printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                                break;
-                        }
-                        
-                        if (normalChoice == 0) break;
-                        
-                        // æš‚åœï¼Œè®©ç”¨æˆ·çœ‹æ¸…æ¥šè¾“å‡ºç»“æœ
-                        printf("\næŒ‰å›è½¦é”®ç»§ç»­...");
-                        getchar();  // æ¶ˆè€—ä¹‹å‰çš„æ¢è¡Œç¬¦
-                        getchar();  // ç­‰å¾…ç”¨æˆ·è¾“å…¥å›è½¦é”®
+
+        // Ğ£Ô°¿¨ÓÃ»§
+        if (roleChoice == 1) {
+            int isLogin = 0;       // ÊÇ·ñµÇÂ¼³É¹¦
+            int userIdx = -1;      // µÇÂ¼ÓÃ»§Ë÷Òı
+            int roleActive = 1;    // ¿ØÖÆ½ÇÉ«ÄÚÑ­»·£¨ÊÇ·ñ·µ»ØÖ÷²Ëµ¥£©
+            while (roleActive) {
+                if (!isLogin) {
+                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    char userId[ID_LEN], pwd[PWD_LEN];
+                    printf("\n===== Ğ£Ô°¿¨ÓÃ»§µÇÂ¼ =====\n");
+                    printf("ÇëÊäÈëÕËºÅ(Ñ§ºÅ)£º");
+                    scanf("%s", userId);
+                    printf("ÇëÊäÈëÃÜÂë£º");
+                    scanf("%s", pwd);
+                    userIdx = userLogin(&sys, userId, pwd);
+                    if (userIdx != -1) {
+                        isLogin = 1; // µÇÂ¼³É¹¦ºó½øÈë¹¦ÄÜ²Ëµ¥
+                    }
+                    printf("°´»Ø³µ¼ÌĞø...");
+                    getchar();
+                    getchar();
+                } else {
+                    // ÒÑµÇÂ¼ÏÔÊ¾¹¦ÄÜ²Ëµ¥
+                    showUserMenu();
+                    int userChoice;
+                    scanf("%d", &userChoice);
+
+                    switch (userChoice) {
+                        case 1: changeOwnPwd(&sys, userIdx); break;
+                        case 2: queryOwnBalance(&sys, userIdx); break;
+                        case 3: queryOwnConsumption(&sys, userIdx); break;
+                        case 4: toggleOwnCardStatus(&sys, userIdx); break;
+                        case 0:
+                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            isLogin = 0;
+                            roleActive = 0; // ÍË³ö½ÇÉ«ÄÚÑ­»·£¬·µ»ØÖ÷²Ëµ¥
+                            break;
+                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                    }
+
+                    if (isLogin) { // Î´ÍË³öÊ±µÈ´ı»Ø³µ
+                        printf("°´»Ø³µ¼ÌĞø...");
+                        getchar();
+                        getchar();
                     }
                 }
-                break;
-            case 2:  // å¡ç®¡ç†å‘˜
-                {
-                    int cardAdminChoice;
-                    while(1) {
-                        showCardAdminMenu();
-                        scanf("%d", &cardAdminChoice);
-                        
-                        switch(cardAdminChoice) {
-                            case 1:  // æ·»åŠ å­¦ç”Ÿä¿¡æ¯
-                                addStudent(&students);
-                                break;
-                            case 2:  // æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯
-                                if (students.size == 0) {
-                                    printf("å½“å‰æ²¡æœ‰å­¦ç”Ÿä¿¡æ¯ï¼\n");
-                                    break;
-                                }
-                                
-                                int findChoice;
-                                showFindMenu();
-                                scanf("%d", &findChoice);
-                                
-                                switch(findChoice) {
-                                    case 1:  // æŒ‰å§“åæŸ¥æ‰¾
-                                        {
-                                            char name[20];
-                                            printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå§“åï¼š");
-                                            scanf("%s", name);
-                                            
-                                            int index = findStudent(&students, name);
-                                            if (index == -1) {
-                                                printf("æœªæ‰¾åˆ°å§“åä¸º %s çš„å­¦ç”Ÿï¼\n", name);
-                                            } else {
-                                                printf("\næ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯ï¼š\n");
-                                                printf("å§“åï¼š%s\tå­¦å·ï¼š%d\tæˆç»©ï¼š%.2f\n", 
-                                                       students.students[index].name, 
-                                                       students.students[index].id, 
-                                                       students.students[index].score);
-                                            }
-                                        }
-                                        break;
-                                    case 2:  // æŒ‰å­¦å·æŸ¥æ‰¾
-                                        {
-                                            int id;
-                                            printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå­¦å·ï¼š");
-                                            scanf("%d", &id);
-                                            
-                                            int index = findStudentById(&students, id);
-                                            if (index == -1) {
-                                                printf("æœªæ‰¾åˆ°å­¦å·ä¸º %d çš„å­¦ç”Ÿï¼\n", id);
-                                            } else {
-                                                printf("\næ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯ï¼š\n");
-                                                printf("å§“åï¼š%s\tå­¦å·ï¼š%d\tæˆç»©ï¼š%.2f\n", 
-                                                       students.students[index].name, 
-                                                       students.students[index].id, 
-                                                       students.students[index].score);
-                                            }
-                                        }
-                                        break;
-                                    case 0:  // è¿”å›å¡ç®¡ç†å‘˜èœå•
-                                        break;
-                                    default:
-                                        printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                                        break;
-                                }
-                                break;
-                            case 3:  // ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
-                                modifyStudent(&students);
-                                break;
-                            case 4:  // æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯
-                                showAllStudents(&students);
-                                break;
-                            case 5:  // å­¦ç”Ÿå¡å……å€¼
-                                rechargeCard(&students);
-                                break;
-                            case 6:  // æŒ‚å¤±å­¦ç”Ÿå¡
-                                reportLostCard(&students);
-                                break;
-                            case 7:  // æ¢å¤å­¦ç”Ÿå¡
-                                restoreCard(&students);
-                                break;
-                            case 8:  // æŸ¥è¯¢å­¦ç”Ÿå¡ä¿¡æ¯
-                                queryCardInfo(&students);
-                                break;
-                            case 0:  // è¿”å›è§’è‰²é€‰æ‹©
-                                break;
-                            default:
-                                printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                                break;
-                        }
-                        
-                        if (cardAdminChoice == 0) break;
-                        
-                        // æš‚åœï¼Œè®©ç”¨æˆ·çœ‹æ¸…æ¥šè¾“å‡ºç»“æœ
-                        printf("\næŒ‰å›è½¦é”®ç»§ç»­...");
-                        getchar();  // æ¶ˆè€—ä¹‹å‰çš„æ¢è¡Œç¬¦
-                        getchar();  // ç­‰å¾…ç”¨æˆ·è¾“å…¥å›è½¦é”®
-                    }
-                }
-                break;
-            case 3:  // ç³»ç»Ÿç®¡ç†å‘˜
-                {
-                    int systemAdminChoice;
-                    while(1) {
-                        showSystemAdminMenu();
-                        scanf("%d", &systemAdminChoice);
-                        
-                        switch(systemAdminChoice) {
-                            case 1:  // æ·»åŠ å­¦ç”Ÿä¿¡æ¯
-                                addStudent(&students);
-                                break;
-                            case 2:  // æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯
-                                if (students.size == 0) {
-                                    printf("å½“å‰æ²¡æœ‰å­¦ç”Ÿä¿¡æ¯ï¼\n");
-                                    break;
-                                }
-                                
-                                int findChoice;
-                                showFindMenu();
-                                scanf("%d", &findChoice);
-                                
-                                switch(findChoice) {
-                                    case 1:  // æŒ‰å§“åæŸ¥æ‰¾
-                                        {
-                                            char name[20];
-                                            printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå§“åï¼š");
-                                            scanf("%s", name);
-                                            
-                                            int index = findStudent(&students, name);
-                                            if (index == -1) {
-                                                printf("æœªæ‰¾åˆ°å§“åä¸º %s çš„å­¦ç”Ÿï¼\n", name);
-                                            } else {
-                                                printf("\næ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯ï¼š\n");
-                                                printf("å§“åï¼š%s\tå­¦å·ï¼š%d\tæˆç»©ï¼š%.2f\n", 
-                                                       students.students[index].name, 
-                                                       students.students[index].id, 
-                                                       students.students[index].score);
-                                            }
-                                        }
-                                        break;
-                                    case 2:  // æŒ‰å­¦å·æŸ¥æ‰¾
-                                        {
-                                            int id;
-                                            printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå­¦å·ï¼š");
-                                            scanf("%d", &id);
-                                            
-                                            int index = findStudentById(&students, id);
-                                            if (index == -1) {
-                                                printf("æœªæ‰¾åˆ°å­¦å·ä¸º %d çš„å­¦ç”Ÿï¼\n", id);
-                                            } else {
-                                                printf("\næ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯ï¼š\n");
-                                                printf("å§“åï¼š%s\tå­¦å·ï¼š%d\tæˆç»©ï¼š%.2f\n", 
-                                                       students.students[index].name, 
-                                                       students.students[index].id, 
-                                                       students.students[index].score);
-                                            }
-                                        }
-                                        break;
-                                    case 0:  // è¿”å›ç³»ç»Ÿç®¡ç†å‘˜èœå•
-                                        break;
-                                    default:
-                                        printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                                        break;
-                                }
-                                break;
-                            case 3:  // åˆ é™¤å­¦ç”Ÿä¿¡æ¯
-                                deleteStudent(&students);
-                                break;
-                            case 4:  // ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
-                                modifyStudent(&students);
-                                break;
-                            case 5:  // æŒ‰å­¦å·æ’åº
-                                sortStudentsById(&students);
-                                break;
-                            case 6:  // æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯
-                                showAllStudents(&students);
-                                break;
-                            case 7:  // å­¦ç”Ÿå¡å……å€¼
-                                rechargeCard(&students);
-                                break;
-                            case 8:  // æŒ‚å¤±å­¦ç”Ÿå¡
-                                reportLostCard(&students);
-                                break;
-                            case 9:  // æ¢å¤å­¦ç”Ÿå¡
-                                restoreCard(&students);
-                                break;
-                            case 10:  // æŸ¥è¯¢å­¦ç”Ÿå¡ä¿¡æ¯
-                                queryCardInfo(&students);
-                                break;
-                            case 0:  // è¿”å›è§’è‰²é€‰æ‹©
-                                break;
-                            default:
-                                printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                                break;
-                        }
-                        
-                        if (systemAdminChoice == 0) break;
-                        
-                        // æš‚åœï¼Œè®©ç”¨æˆ·çœ‹æ¸…æ¥šè¾“å‡ºç»“æœ
-                        printf("\næŒ‰å›è½¦é”®ç»§ç»­...");
-                        getchar();  // æ¶ˆè€—ä¹‹å‰çš„æ¢è¡Œç¬¦
-                        getchar();  // ç­‰å¾…ç”¨æˆ·è¾“å…¥å›è½¦é”®
-                    }
-                }
-                break;
-            case 0:  // é€€å‡ºç³»ç»Ÿ
-                printf("æ„Ÿè°¢ä½¿ç”¨å­¦ç”Ÿç®¡ç†ç³»ç»Ÿï¼Œå†è§ï¼\n");
-                return 0;
-            default:
-                printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
-                break;
+            }
         }
-        
-        // æš‚åœï¼Œè®©ç”¨æˆ·çœ‹æ¸…æ¥šè¾“å‡ºç»“æœ
-        printf("\næŒ‰å›è½¦é”®ç»§ç»­...");
-        getchar();  // æ¶ˆè€—ä¹‹å‰çš„æ¢è¡Œç¬¦
-        getchar();  // ç­‰å¾…ç”¨æˆ·è¾“å…¥å›è½¦é”®
+
+        // ¿¨Îñ¹ÜÀíÔ±
+        else if (roleChoice == 2) {
+            int isLogin = 0;
+            int adminIdx = -1;
+            int roleActive = 1;
+            while (roleActive) {
+                if (!isLogin) {
+                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    char adminId[ID_LEN], pwd[PWD_LEN];
+                    printf("\n===== ¿¨Îñ¹ÜÀíÔ±µÇÂ¼ =====\n");
+                    printf("ÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
+                    scanf("%s", adminId);
+                    printf("ÇëÊäÈëÃÜÂë£º");
+                    scanf("%s", pwd);
+                    adminIdx = cardAdminLogin(&sys, adminId, pwd);
+                    if (adminIdx != -1) {
+                        isLogin = 1;
+                    }
+                    printf("°´»Ø³µ¼ÌĞø...");
+                    getchar();
+                    getchar();
+                } else {
+                    showCardAdminMenu();
+                    int adminChoice;
+                    scanf("%d", &adminChoice);
+
+                    switch (adminChoice) {
+                        case 1: createUser(&sys); break;
+                        case 2: rechargeCard(&sys); break;
+                        case 3: queryAndModifyUser(&sys); break;
+                        case 4: resetUserPwd(&sys); break;
+                        case 5: modifyUserPwdByAdmin(&sys); break;
+                        case 6: toggleUserCardStatusByAdmin(&sys); break;
+                        case 7: cancelUserAccount(&sys); break;
+                        case 0:
+                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            isLogin = 0;
+                            roleActive = 0; // ·µ»ØÖ÷²Ëµ¥
+                            break;
+                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                    }
+
+                    if (isLogin) {
+                        printf("°´»Ø³µ¼ÌĞø...");
+                        getchar();
+                        getchar();
+                    }
+                }
+            }
+        }
+
+        // ÏµÍ³¹ÜÀíÔ±
+        else if (roleChoice == 3) {
+            int isLogin = 0;
+            int roleActive = 1;
+            while (roleActive) {
+                if (!isLogin) {
+                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    char adminId[ID_LEN], pwd[PWD_LEN];
+                    printf("\n===== ÏµÍ³¹ÜÀíÔ±µÇÂ¼ =====\n");
+                    printf("ÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
+                    scanf("%s", adminId);
+                    printf("ÇëÊäÈëÃÜÂë£º");
+                    scanf("%s", pwd);
+                    if (systemAdminLogin(adminId, pwd)) {
+                        isLogin = 1;
+                    }
+                    printf("°´»Ø³µ¼ÌĞø...");
+                    getchar();
+                    getchar();
+                } else {
+                    showSystemAdminMenu();
+                    int sysChoice;
+                    scanf("%d", &sysChoice);
+
+                    switch (sysChoice) {
+                        case 1: addCardAdmin(&sys); break;
+                        case 2: deleteCardAdmin(&sys); break;
+                        case 3: queryAllUsers(&sys); break;
+                        case 4: queryAllCardAdmins(&sys); break;
+                        case 0:
+                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            isLogin = 0;
+                            roleActive = 0; // ·µ»ØÖ÷²Ëµ¥
+                            break;
+                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                    }
+
+                    if (isLogin) {
+                        printf("°´»Ø³µ¼ÌĞø...");
+                        getchar();
+                        getchar();
+                    }
+                }
+            }
+        }
+
+        // ÍË³öÏµÍ³
+        else if (roleChoice == 0) {
+            printf("¸ĞĞ»Ê¹ÓÃĞ£Ô°¿¨¹ÜÀíÏµÍ³£¬ÔÙ¼û£¡\n");
+            return 0;
+        }
+
+        // ÊäÈë´íÎó
+        else {
+            printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n");
+            printf("°´»Ø³µ¼ÌĞø...");
+            getchar();
+            getchar();
+        }
     }
-    
+
     return 0;
 }

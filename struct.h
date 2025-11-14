@@ -1,23 +1,54 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
-// å®šä¹‰å¸¸é‡
-#define MAXSIZE 100  // å­¦ç”Ÿæ•°ç»„çš„æœ€å¤§å®¹é‡
+// ³£Á¿¶¨Òå£¨ĞÂÊÖºÃ¼Ç£¬Ö±½ÓÓÃÊı×Ö±íÊ¾ÉÏÏŞ£©
+#define MAX_USER 100        // ×î´óĞ£Ô°¿¨ÓÃ»§Êı
+#define MAX_CARD_ADMIN 20   // ×î´ó¿¨¹ÜÀíÔ±Êı
+#define MAX_RECORD 1000     // ×î´ó½»Ò×¼ÇÂ¼Êı
+#define ID_LEN 12           // ÕËºÅ³¤¶È£¨Ñ§ºÅ/¹ÜÀíÔ±ÕËºÅ£©
+#define PWD_LEN 10          // ÃÜÂë³¤¶È
+#define NAME_LEN 20         // ĞÕÃû³¤¶È
+#define TIME_LEN 20         // Ê±¼ä×Ö·û´®³¤¶È
 
-// å®šä¹‰å­¦ç”Ÿç»“æ„ä½“
-typedef struct {
-    char name[20];  // å­¦ç”Ÿå§“å
-    int id;         // å­¦ç”Ÿå­¦å·
-    float score;    // å­¦ç”Ÿæˆç»©
-    int cardId;     // å­¦ç”Ÿå¡ID
-    float balance;  // å¡ä½™é¢
-    int cardStatus; // å¡çŠ¶æ€ï¼š1-æ­£å¸¸ï¼Œ0-æŒ‚å¤±
-} ST;
+// ½»Ò×ÀàĞÍÃ¶¾Ù£º0=Ïû·Ñ£¬1=³äÖµ£¨ÓÃÊı×Ö·½±ãÅĞ¶Ï£©
+typedef enum {
+    CONSUMPTION = 0,
+    RECHARGE = 1
+} TransType;
 
-// å®šä¹‰å­¦ç”Ÿæ•°ç»„ç»“æ„ä½“
+// Ğ£Ô°¿¨ÓÃ»§½á¹¹Ìå
 typedef struct {
-    ST students[MAXSIZE];  // å­¦ç”Ÿæ•°ç»„
-    int size;              // å½“å‰å­¦ç”Ÿæ•°é‡
-} STS;
+    char userId[ID_LEN];    // ÓÃ»§ÕËºÅ£¨±ÈÈçÑ§ºÅ£©
+    char pwd[PWD_LEN];      // ÃÜÂë
+    char name[NAME_LEN];    // ĞÕÃû
+    int cardId;             // Ğ£Ô°¿¨ºÅ£¨Î¨Ò»±êÊ¶£©
+    float balance;          // ¿¨ÄÚÓà¶î
+    int status;             // ¿¨×´Ì¬£º1=Õı³££¬0=¹ÒÊ§
+} User;
+
+// ¿¨¹ÜÀíÔ±½á¹¹Ìå
+typedef struct {
+    char adminId[ID_LEN];   // ¹ÜÀíÔ±ÕËºÅ
+    char pwd[PWD_LEN];      // ÃÜÂë
+    char name[NAME_LEN];    // ĞÕÃû
+} CardAdmin;
+
+// ½»Ò×¼ÇÂ¼½á¹¹Ìå£¨´æ´¢Ïû·Ñ/³äÖµ¼ÇÂ¼£©
+typedef struct {
+    int cardId;             // ¹ØÁªµÄĞ£Ô°¿¨ºÅ
+    TransType type;         // ½»Ò×ÀàĞÍ£¨Ïû·Ñ/³äÖµ£©
+    float amount;           // ½»Ò×½ğ¶î
+    char time[TIME_LEN];    // ½»Ò×Ê±¼ä£¨¸ñÊ½£ºÄê-ÔÂ-ÈÕ Ê±:·Ö:Ãë£©
+} TransRecord;
+
+// ÏµÍ³È«¾ÖÊı¾İ£¨´æ´¢ËùÓĞÓÃ»§¡¢¹ÜÀíÔ±¡¢½»Ò×¼ÇÂ¼£©
+typedef struct {
+    User users[MAX_USER];           // Ğ£Ô°¿¨ÓÃ»§Êı×é
+    int userCount;                  // µ±Ç°ÓÃ»§×ÜÊı
+    CardAdmin cardAdmins[MAX_CARD_ADMIN]; // ¿¨¹ÜÀíÔ±Êı×é
+    int cardAdminCount;             // µ±Ç°¿¨¹ÜÀíÔ±×ÜÊı
+    TransRecord records[MAX_RECORD]; // ½»Ò×¼ÇÂ¼Êı×é
+    int recordCount;                // µ±Ç°½»Ò×¼ÇÂ¼×ÜÊı
+} SystemData;
 
 #endif
