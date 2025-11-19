@@ -3,41 +3,38 @@
 
 #include "struct.h"
 
-// èœå•æ˜¾ç¤ºå‡½æ•°
-void showRoleMenu();
-void showNormalUserMenu();
-void showCardAdminMenu();
-void showSystemAdminMenu();
+// ÏµÍ³¹¤¾ßº¯Êı
+void initSystem(SystemData *sys);          // ³õÊ¼»¯ÏµÍ³£¨¼ÓÔØ²âÊÔÊı¾İ£©
+int findUserByUserId(SystemData *sys, char *userId); // °´ÓÃ»§ÕËºÅÕÒÓÃ»§£¨·µ»ØË÷Òı£¬Ã»ÕÒµ½·µ»Ø-1£©
+int findUserByCardId(SystemData *sys, int cardId);   // °´Ğ£Ô°¿¨ºÅÕÒÓÃ»§£¨·µ»ØË÷Òı£©
+int findCardAdminByAdminId(SystemData *sys, char *adminId); // °´¹ÜÀíÔ±ÕËºÅÕÒ¹ÜÀíÔ±£¨·µ»ØË÷Òı£©
+void saveTransRecord(SystemData *sys, int cardId, TransType type, float amount); // ±£´æ½»Ò×¼ÇÂ¼
+void getCurrentTime(char *timeStr);        // »ñÈ¡µ±Ç°Ê±¼ä
 
-// å¡ç‰‡ç®¡ç†ç›¸å…³å‡½æ•°
-int findStudentByCardId(STS *arr, int cardId);
-void rechargeCard(STS *arr);
-void reportLostCard(STS *arr);
-void restoreCard(STS *arr);
-void queryCardInfo(STS *arr);
+// µÇÂ¼¹¦ÄÜº¯Êı
+int userLogin(SystemData *sys, char *userId, char *pwd); // Ğ£Ô°¿¨ÓÃ»§µÇÂ¼£¨³É¹¦·µ»ØÓÃ»§Ë÷Òı£©
+int cardAdminLogin(SystemData *sys, char *adminId, char *pwd); // ¿¨¹ÜÀíÔ±µÇÂ¼£¨³É¹¦·µ»Ø¹ÜÀíÔ±Ë÷Òı£©
+int systemAdminLogin(char *adminId, char *pwd); // ÏµÍ³¹ÜÀíÔ±µÇÂ¼£¨³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0£©
 
-// åˆå§‹åŒ–å­¦ç”Ÿæ•°ç»„
-void initStudentArray(STS *arr);
+// Ğ£Ô°¿¨ÓÃ»§¹¦ÄÜº¯Êı
+void changeOwnPwd(SystemData *sys, int userIdx); // ĞŞ¸Ä×Ô¼ºµÄÃÜÂë
+void queryOwnBalance(SystemData *sys, int userIdx); // ²éÑ¯×Ô¼ºµÄÓà¶î
+void queryOwnConsumption(SystemData *sys, int userIdx); // ²éÑ¯×Ô¼ºµÄÏû·Ñ¼ÇÂ¼
+void toggleOwnCardStatus(SystemData *sys, int userIdx); // ¹ÒÊ§/½â¹Ò×Ô¼ºµÄ¿¨
 
-// æ·»åŠ å­¦ç”Ÿä¿¡æ¯
-void addStudent(STS *arr);
+// ¿¨¹ÜÀíÔ±¹¦ÄÜº¯Êı
+void createUser(SystemData *sys);          // ¿ª»§°ìÀí£¨ĞÂÔöĞ£Ô°¿¨ÓÃ»§£©
+void rechargeCard(SystemData *sys);        // Ğ£Ô°¿¨³äÖµ
+void queryAndModifyUser(SystemData *sys);  // ²éÑ¯²¢ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+void resetUserPwd(SystemData *sys);        // ÖØÖÃÓÃ»§ÃÜÂë£¨¸ÄÎª123456£©
+void modifyUserPwdByAdmin(SystemData *sys); // ¹ÜÀíÔ±Ö±½ÓĞŞ¸ÄÓÃ»§ÃÜÂë
+void toggleUserCardStatusByAdmin(SystemData *sys); // ¹ÜÀíÔ±°ïÓÃ»§¹ÒÊ§/½â¹Ò
+void cancelUserAccount(SystemData *sys);   // ×¢ÏúĞ£Ô°¿¨£¨É¾³ıÓÃ»§£©
 
-// æ ¹æ®å§“åæŸ¥æ‰¾å­¦ç”Ÿï¼Œè¿”å›å­¦ç”Ÿç´¢å¼•ï¼ˆæœªæ‰¾åˆ°è¿”å›-1ï¼‰
-int findStudent(STS *arr, char *name);
-
-// æ ¹æ®å­¦å·æŸ¥æ‰¾å­¦ç”Ÿï¼Œè¿”å›å­¦ç”Ÿç´¢å¼•ï¼ˆæœªæ‰¾åˆ°è¿”å›-1ï¼‰
-int findStudentById(STS *arr, int id);
-
-// åˆ é™¤å­¦ç”Ÿä¿¡æ¯
-void deleteStudent(STS *arr);
-
-// ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
-void modifyStudent(STS *arr);
-
-// æŒ‰å­¦å·æ’åºå­¦ç”Ÿä¿¡æ¯
-void sortStudentsById(STS *arr);
-
-// æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯
-void showAllStudents(STS *arr);
+// ÏµÍ³¹ÜÀíÔ±¹¦ÄÜº¯Êı
+void addCardAdmin(SystemData *sys);        // ĞÂÔö¿¨¹ÜÀíÔ±ÕËºÅ
+void deleteCardAdmin(SystemData *sys);     // É¾³ı¿¨¹ÜÀíÔ±ÕËºÅ
+void queryAllUsers(SystemData *sys);       // ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢
+void queryAllCardAdmins(SystemData *sys);  // ²éÑ¯ËùÓĞ¿¨¹ÜÀíÔ±ĞÅÏ¢
 
 #endif
