@@ -2,10 +2,13 @@
 *.exe
 *.out
 *.o
+C-proj
+x64
 
 # IDE 相关文件
 .vscode/
 .idea/
+.vs/
 
 # 构建目录
 build/
