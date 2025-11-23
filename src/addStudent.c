@@ -1,11 +1,13 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 #include <string.h>
 
 // 添加学生信息
 void addStudent(STS *arr) {
-    if (arr->size < MAXSIZE) {
+    if (arr->size < MAX_USER) {
         // 输入学生姓名
         printf("请输入学生姓名：");
         scanf("%s", arr->students[arr->size].name);

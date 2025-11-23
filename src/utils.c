@@ -1,48 +1,50 @@
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
-// ³õÊ¼»¯ÏµÍ³£ºÉèÖÃ³õÊ¼Öµ£¬Ìí¼Ó²âÊÔÕËºÅ£¨·½±ãÖ±½Ó²âÊÔ£©
+// åˆå§‹åŒ–ç³»ç»Ÿï¼šè®¾ç½®åˆå§‹å€¼ï¼Œæ·»åŠ æµ‹è¯•è´¦å·ï¼ˆæ–¹ä¾¿ç›´æ¥æµ‹è¯•ï¼‰
 void initSystem(SystemData *sys) {
-    // ËùÓĞÊıÁ¿³õÊ¼»¯Îª0
+    // æ‰€æœ‰æ•°é‡åˆå§‹åŒ–ä¸º0
     sys->userCount = 0;
     sys->cardAdminCount = 0;
     sys->recordCount = 0;
 
-    // Ìí¼Ó²âÊÔ¿¨¹ÜÀíÔ±£¨ÕËºÅ£ºcardadmin£¬ÃÜÂë£º123456£©
+    // æ·»åŠ æµ‹è¯•å¡ç®¡ç†å‘˜ï¼ˆè´¦å·ï¼šcardadminï¼Œå¯†ç ï¼š123456ï¼‰
     CardAdmin testAdmin;
     strcpy(testAdmin.adminId, "cardadmin");
     strcpy(testAdmin.pwd, "123456");
     strcpy(testAdmin.name, "Zhang Admin");
     sys->cardAdmins[sys->cardAdminCount++] = testAdmin;
 
-    // Ìí¼Ó²âÊÔĞ£Ô°¿¨ÓÃ»§£¨ÕËºÅ£º2024001£¬ÃÜÂë£º123456£©
+    // æ·»åŠ æµ‹è¯•æ ¡å›­å¡ç”¨æˆ·ï¼ˆè´¦å·ï¼š2024001ï¼Œå¯†ç ï¼š123456ï¼‰
     User testUser;
     strcpy(testUser.userId, "2024001");
     strcpy(testUser.pwd, "123456");
     strcpy(testUser.name, "Li Si");
-    testUser.cardId = 100001;  // Ğ£Ô°¿¨ºÅ´Ó100001¿ªÊ¼
-    testUser.balance = 200.0f; // ³õÊ¼Óà¶î200Ôª
-    testUser.status = 1;       // ³õÊ¼×´Ì¬Õı³£
+    testUser.cardId = 100001;  // æ ¡å›­å¡å·ä»100001å¼€å§‹
+    testUser.balance = 200.0f; // åˆå§‹ä½™é¢200å…ƒ
+    testUser.status = 1;       // åˆå§‹çŠ¶æ€æ­£å¸¸
     sys->users[sys->userCount++] = testUser;
 
-    // Ìí¼Ó²âÊÔ½»Ò×¼ÇÂ¼£¨³äÖµ200Ôª£¬Ïû·Ñ30Ôª£©
+    // æ·»åŠ æµ‹è¯•äº¤æ˜“è®°å½•ï¼ˆå……å€¼200å…ƒï¼Œæ¶ˆè´¹30å…ƒï¼‰
     saveTransRecord(sys, 100001, RECHARGE, 200.0f);
     saveTransRecord(sys, 100001, CONSUMPTION, 30.0f);
 
-    printf("ÏµÍ³³õÊ¼»¯Íê³É£¡\n");
-    printf("²âÊÔÕËºÅ£º\n");
-    printf("ÓÃ»§£ºÕËºÅ2024001 / ÃÜÂë123456\n");
-    printf("¿¨¹ÜÀíÔ±£ºÕËºÅcardadmin / ÃÜÂë123456\n");
-    printf("ÏµÍ³¹ÜÀíÔ±£ºÕËºÅadmin / ÃÜÂë123456\n");
+    printf("ç³»ç»Ÿåˆå§‹åŒ–å®Œæˆï¼\n");
+    printf("æµ‹è¯•è´¦å·ï¼š\n");
+    printf("ç”¨æˆ·ï¼šè´¦å·2024001 / å¯†ç 123456\n");
+    printf("å¡ç®¡ç†å‘˜ï¼šè´¦å·cardadmin / å¯†ç 123456\n");
+    printf("ç³»ç»Ÿç®¡ç†å‘˜ï¼šè´¦å·admin / å¯†ç 123456\n");
 }
 
-// °´ÓÃ»§ÕËºÅÕÒÓÃ»§£¨ÕÒµ½·µ»ØË÷Òı£¬Ã»ÕÒµ½·µ»Ø-1£©
+// æŒ‰ç”¨æˆ·è´¦å·æ‰¾ç”¨æˆ·ï¼ˆæ‰¾åˆ°è¿”å›ç´¢å¼•ï¼Œæ²¡æ‰¾åˆ°è¿”å›-1ï¼‰
 int findUserByUserId(SystemData *sys, char *userId) {
     for (int i = 0; i < sys->userCount; i++) {
-        // ±È½ÏÕËºÅÊÇ·ñÒ»ÖÂ
+        // æ¯”è¾ƒè´¦å·æ˜¯å¦ä¸€è‡´
         if (strcmp(sys->users[i].userId, userId) == 0) {
             return i;
         }
@@ -50,7 +52,7 @@ int findUserByUserId(SystemData *sys, char *userId) {
     return -1;
 }
 
-// °´Ğ£Ô°¿¨ºÅÕÒÓÃ»§£¨ÕÒµ½·µ»ØË÷Òı£¬Ã»ÕÒµ½·µ»Ø-1£©
+// æŒ‰æ ¡å›­å¡å·æ‰¾ç”¨æˆ·ï¼ˆæ‰¾åˆ°è¿”å›ç´¢å¼•ï¼Œæ²¡æ‰¾åˆ°è¿”å›-1ï¼‰
 int findUserByCardId(SystemData *sys, int cardId) {
     for (int i = 0; i < sys->userCount; i++) {
         if (sys->users[i].cardId == cardId) {
@@ -60,7 +62,7 @@ int findUserByCardId(SystemData *sys, int cardId) {
     return -1;
 }
 
-// °´¹ÜÀíÔ±ÕËºÅÕÒ¿¨¹ÜÀíÔ±£¨ÕÒµ½·µ»ØË÷Òı£¬Ã»ÕÒµ½·µ»Ø-1£©
+// æŒ‰ç®¡ç†å‘˜è´¦å·æ‰¾å¡ç®¡ç†å‘˜ï¼ˆæ‰¾åˆ°è¿”å›ç´¢å¼•ï¼Œæ²¡æ‰¾åˆ°è¿”å›-1ï¼‰
 int findCardAdminByAdminId(SystemData *sys, char *adminId) {
     for (int i = 0; i < sys->cardAdminCount; i++) {
         if (strcmp(sys->cardAdmins[i].adminId, adminId) == 0) {
@@ -70,28 +72,28 @@ int findCardAdminByAdminId(SystemData *sys, char *adminId) {
     return -1;
 }
 
-// »ñÈ¡µ±Ç°Ê±¼ä£¨¸ñÊ½£ºYYYY-MM-DD HH:MM:SS£©
+// è·å–å½“å‰æ—¶é—´ï¼ˆæ ¼å¼ï¼šYYYY-MM-DD HH:MM:SSï¼‰
 void getCurrentTime(char *timeStr) {
     time_t now = time(NULL);
     struct tm *tmInfo = localtime(&now);
-    // Ö±½Ó¸ñÊ½»¯Ê±¼ä×Ö·û´®£¬²»ÓÃÉî¾¿Ô­Àí
+    // ç›´æ¥æ ¼å¼åŒ–æ—¶é—´å­—ç¬¦ä¸²ï¼Œä¸ç”¨æ·±ç©¶åŸç†
     sprintf(timeStr, "%d-%02d-%02d %02d:%02d:%02d",
             tmInfo->tm_year + 1900, tmInfo->tm_mon + 1, tmInfo->tm_mday,
             tmInfo->tm_hour, tmInfo->tm_min, tmInfo->tm_sec);
 }
 
-// ±£´æ½»Ò×¼ÇÂ¼£¨Ïû·Ñ/³äÖµºóµ÷ÓÃ£©
+// ä¿å­˜äº¤æ˜“è®°å½•ï¼ˆæ¶ˆè´¹/å……å€¼åè°ƒç”¨ï¼‰
 void saveTransRecord(SystemData *sys, int cardId, TransType type, float amount) {
-    // ÏÈÅĞ¶Ï¼ÇÂ¼ÊÇ·ñÂúÁË
+    // å…ˆåˆ¤æ–­è®°å½•æ˜¯å¦æ»¡äº†
     if (sys->recordCount >= MAX_RECORD) {
-        printf("½»Ò×¼ÇÂ¼ÒÑÂú£¬±£´æÊ§°Ü£¡\n");
+        printf("äº¤æ˜“è®°å½•å·²æ»¡ï¼Œä¿å­˜å¤±è´¥ï¼\n");
         return;
     }
-    // ĞÂÔöÒ»Ìõ¼ÇÂ¼
+    // æ–°å¢ä¸€æ¡è®°å½•
     TransRecord *newRecord = &sys->records[sys->recordCount];
     newRecord->cardId = cardId;
     newRecord->type = type;
     newRecord->amount = amount;
-    getCurrentTime(newRecord->time); // ¼ÇÂ¼µ±Ç°Ê±¼ä
-    sys->recordCount++; // ¼ÇÂ¼Êı+1
+    getCurrentTime(newRecord->time); // è®°å½•å½“å‰æ—¶é—´
+    sys->recordCount++; // è®°å½•æ•°+1
 }

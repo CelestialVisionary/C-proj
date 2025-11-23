@@ -1,73 +1,75 @@
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
-// ĞÂÔö¿¨¹ÜÀíÔ±ÕËºÅ
+// æ–°å¢å¡ç®¡ç†å‘˜è´¦å·
 void addCardAdmin(SystemData *sys) {
     if (sys->cardAdminCount >= MAX_CARD_ADMIN) {
-        printf("¿¨¹ÜÀíÔ±ÊıÁ¿ÒÑ´ïÉÏÏŞ£¬ÎŞ·¨ĞÂÔö£¡\n");
+        printf("å¡ç®¡ç†å‘˜æ•°é‡å·²è¾¾ä¸Šé™ï¼Œæ— æ³•æ–°å¢ï¼\n");
         return;
     }
 
     CardAdmin newAdmin;
-    printf("ÇëÊäÈëĞÂ¿¨¹ÜÀíÔ±ÕËºÅ£º");
+    printf("è¯·è¾“å…¥æ–°å¡ç®¡ç†å‘˜è´¦å·ï¼š");
     scanf("%s", newAdmin.adminId);
-    // ¼ì²éÕËºÅÊÇ·ñÒÑ´æÔÚ
+    // æ£€æŸ¥è´¦å·æ˜¯å¦å·²å­˜åœ¨
     if (findCardAdminByAdminId(sys, newAdmin.adminId) != -1) {
-        printf("¸Ã¹ÜÀíÔ±ÕËºÅÒÑ´æÔÚ£¡\n");
+        printf("è¯¥ç®¡ç†å‘˜è´¦å·å·²å­˜åœ¨ï¼\n");
         return;
     }
 
-    // ³õÊ¼ÃÜÂëÉèÎª123456
+    // åˆå§‹å¯†ç è®¾ä¸º123456
     strcpy(newAdmin.pwd, "123456");
-    printf("ÇëÊäÈëĞÂ¿¨¹ÜÀíÔ±ĞÕÃû£º");
+    printf("è¯·è¾“å…¥æ–°å¡ç®¡ç†å‘˜å§“åï¼š");
     scanf("%s", newAdmin.name);
 
-    // Ìí¼Óµ½ÏµÍ³
+    // æ·»åŠ åˆ°ç³»ç»Ÿ
     sys->cardAdmins[sys->cardAdminCount++] = newAdmin;
-    printf("ĞÂÔö³É¹¦£¡\n");
-    printf("ÕËºÅ£º%s\n", newAdmin.adminId);
-    printf("³õÊ¼ÃÜÂë£º123456£¨ÌáĞÑ¹ÜÀíÔ±¼°Ê±ĞŞ¸Ä£©\n");
+    printf("æ–°å¢æˆåŠŸï¼\n");
+    printf("è´¦å·ï¼š%s\n", newAdmin.adminId);
+    printf("åˆå§‹å¯†ç ï¼š123456ï¼ˆæé†’ç®¡ç†å‘˜åŠæ—¶ä¿®æ”¹ï¼‰\n");
 }
 
-// É¾³ı¿¨¹ÜÀíÔ±ÕËºÅ
+// åˆ é™¤å¡ç®¡ç†å‘˜è´¦å·
 void deleteCardAdmin(SystemData *sys) {
     char adminId[ID_LEN];
-    printf("ÇëÊäÈëÒªÉ¾³ıµÄ¿¨¹ÜÀíÔ±ÕËºÅ£º");
+    printf("è¯·è¾“å…¥è¦åˆ é™¤çš„å¡ç®¡ç†å‘˜è´¦å·ï¼š");
     scanf("%s", adminId);
     int adminIdx = findCardAdminByAdminId(sys, adminId);
     if (adminIdx == -1) {
-        printf("Î´ÕÒµ½¸Ã¿¨¹ÜÀíÔ±£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥å¡ç®¡ç†å‘˜ï¼\n");
         return;
     }
 
-    // È·ÈÏÉ¾³ı
-    printf("È·¶¨ÒªÉ¾³ı¹ÜÀíÔ±¡¾%s£¨ÕËºÅ£º%s£©¡¿Âğ£¿£¨y=ÊÇ£¬n=·ñ£©£º", sys->cardAdmins[adminIdx].name, adminId);
+    // ç¡®è®¤åˆ é™¤
+    printf("ç¡®å®šè¦åˆ é™¤ç®¡ç†å‘˜ã€%sï¼ˆè´¦å·ï¼š%sï¼‰ã€‘å—ï¼Ÿï¼ˆy=æ˜¯ï¼Œn=å¦ï¼‰ï¼š", sys->cardAdmins[adminIdx].name, adminId);
     char confirm;
     scanf(" %c", &confirm);
     if (confirm != 'y' && confirm != 'Y') {
-        printf("ÒÑÈ¡ÏûÉ¾³ı£¡\n");
+        printf("å·²å–æ¶ˆåˆ é™¤ï¼\n");
         return;
     }
 
-    // É¾³ı£ººóÃæµÄ¹ÜÀíÔ±ÍùÇ°ÒÆ
+    // åˆ é™¤ï¼šåé¢çš„ç®¡ç†å‘˜å¾€å‰ç§»
     for (int i = adminIdx; i < sys->cardAdminCount - 1; i++) {
         sys->cardAdmins[i] = sys->cardAdmins[i + 1];
     }
     sys->cardAdminCount--;
-    printf("É¾³ı³É¹¦£¡\n");
+    printf("åˆ é™¤æˆåŠŸï¼\n");
 }
 
-// ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢
+// æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
 void queryAllUsers(SystemData *sys) {
     if (sys->userCount == 0) {
-        printf("µ±Ç°Ã»ÓĞÈÎºÎÓÃ»§£¡\n");
+        printf("å½“å‰æ²¡æœ‰ä»»ä½•ç”¨æˆ·ï¼\n");
         return;
     }
 
-    printf("\n===== ËùÓĞÓÃ»§ĞÅÏ¢ =====\n");
-    printf("ÕËºÅ        ĞÕÃû      Ğ£Ô°¿¨ºÅ    Óà¶î£¨Ôª£©  ×´Ì¬\n");
+    printf("\n===== æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯ =====\n");
+    printf("è´¦å·        å§“å      æ ¡å›­å¡å·    ä½™é¢ï¼ˆå…ƒï¼‰  çŠ¶æ€\n");
     for (int i = 0; i < sys->userCount; i++) {
         User *user = &sys->users[i];
         printf("%s        %s      %d        %.2f      %s\n",
@@ -75,26 +77,26 @@ void queryAllUsers(SystemData *sys) {
                user->name,
                user->cardId,
                user->balance,
-               user->status == 1 ? "Õı³£" : "¹ÒÊ§");
+               user->status == 1 ? "æ­£å¸¸" : "æŒ‚å¤±");
     }
     printf("========================\n");
-    printf("×Ü¼Æ£º%d ¸öÓÃ»§\n", sys->userCount);
+    printf("æ€»è®¡ï¼š%d ä¸ªç”¨æˆ·\n", sys->userCount);
 }
 
-// ²éÑ¯ËùÓĞ¿¨¹ÜÀíÔ±ĞÅÏ¢
+// æŸ¥è¯¢æ‰€æœ‰å¡ç®¡ç†å‘˜ä¿¡æ¯
 void queryAllCardAdmins(SystemData *sys) {
     if (sys->cardAdminCount == 0) {
-        printf("µ±Ç°Ã»ÓĞÈÎºÎ¿¨¹ÜÀíÔ±£¡\n");
+        printf("å½“å‰æ²¡æœ‰ä»»ä½•å¡ç®¡ç†å‘˜ï¼\n");
         return;
     }
 
-    printf("\n===== ËùÓĞ¿¨¹ÜÀíÔ±ĞÅÏ¢ =====\n");
-    printf("¹ÜÀíÔ±ÕËºÅ    ĞÕÃû\n");
+    printf("\n===== æ‰€æœ‰å¡ç®¡ç†å‘˜ä¿¡æ¯ =====\n");
+    printf("ç®¡ç†å‘˜è´¦å·    å§“å\n");
     for (int i = 0; i < sys->cardAdminCount; i++) {
         CardAdmin *admin = &sys->cardAdmins[i];
         printf("%s            %s\n", admin->adminId, admin->name);
     }
     printf("==========================\n");
-    printf("×Ü¼Æ£º%d ¸ö¿¨¹ÜÀíÔ±\n", sys->cardAdminCount);
+    printf("æ€»è®¡ï¼š%d ä¸ªå¡ç®¡ç†å‘˜\n", sys->cardAdminCount);
 }
 

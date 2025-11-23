@@ -1,200 +1,202 @@
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
-// ¿ª»§°ìÀí£¨ĞÂÔöĞ£Ô°¿¨ÓÃ»§£©
+// å¼€æˆ·åŠç†ï¼ˆæ–°å¢æ ¡å›­å¡ç”¨æˆ·ï¼‰
 void createUser(SystemData *sys) {
-    // ÏÈÅĞ¶ÏÓÃ»§ÊıÁ¿ÊÇ·ñÂúÁË
+    // å…ˆåˆ¤æ–­ç”¨æˆ·æ•°é‡æ˜¯å¦æ»¡äº†
     if (sys->userCount >= MAX_USER) {
-        printf("ÓÃ»§ÊıÁ¿ÒÑ´ïÉÏÏŞ£¬ÎŞ·¨ĞÂÔö£¡\n");
+        printf("ç”¨æˆ·æ•°é‡å·²è¾¾ä¸Šé™ï¼Œæ— æ³•æ–°å¢ï¼\n");
         return;
     }
 
     User newUser;
-    // ÊäÈëÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©
-    printf("ÇëÊäÈëÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    // è¾“å…¥ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰
+    printf("è¯·è¾“å…¥ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", newUser.userId);
-    // ¼ì²éÕËºÅÊÇ·ñÒÑ´æÔÚ
+    // æ£€æŸ¥è´¦å·æ˜¯å¦å·²å­˜åœ¨
     if (findUserByUserId(sys, newUser.userId) != -1) {
-        printf("¸ÃÕËºÅÒÑ´æÔÚ£¬¿ª»§Ê§°Ü£¡\n");
+        printf("è¯¥è´¦å·å·²å­˜åœ¨ï¼Œå¼€æˆ·å¤±è´¥ï¼\n");
         return;
     }
 
-    // ³õÊ¼ÃÜÂëÉèÎª123456£¨·½±ãÓÃ»§¼Ç×¡£©
+    // åˆå§‹å¯†ç è®¾ä¸º123456ï¼ˆæ–¹ä¾¿ç”¨æˆ·è®°ä½ï¼‰
     strcpy(newUser.pwd, "123456");
 
-    // ÊäÈëÓÃ»§ĞÕÃû
-    printf("ÇëÊäÈëÓÃ»§ĞÕÃû£º");
+    // è¾“å…¥ç”¨æˆ·å§“å
+    printf("è¯·è¾“å…¥ç”¨æˆ·å§“åï¼š");
     scanf("%s", newUser.name);
 
-    // ×Ô¶¯Éú³ÉĞ£Ô°¿¨ºÅ£¨´Ó100001¿ªÊ¼µİÔö£©
+    // è‡ªåŠ¨ç”Ÿæˆæ ¡å›­å¡å·ï¼ˆä»100001å¼€å§‹é€’å¢ï¼‰
     newUser.cardId = 100001 + sys->userCount;
-    newUser.balance = 0.0f; // ³õÊ¼Óà¶î0Ôª
-    newUser.status = 1;     // ³õÊ¼×´Ì¬Õı³£
+    newUser.balance = 0.0f; // åˆå§‹ä½™é¢0å…ƒ
+    newUser.status = 1;     // åˆå§‹çŠ¶æ€æ­£å¸¸
 
-    // °ÑĞÂÓÃ»§Ìí¼Óµ½ÏµÍ³ÖĞ
+    // æŠŠæ–°ç”¨æˆ·æ·»åŠ åˆ°ç³»ç»Ÿä¸­
     sys->users[sys->userCount++] = newUser;
-    printf("¿ª»§³É¹¦£¡\n");
-    printf("ÓÃ»§ÕËºÅ£º%s\n", newUser.userId);
-    printf("Ğ£Ô°¿¨ºÅ£º%d\n", newUser.cardId);
-    printf("³õÊ¼ÃÜÂë£º123456£¨ÌáĞÑÓÃ»§¼°Ê±ĞŞ¸Ä£©\n");
+    printf("å¼€æˆ·æˆåŠŸï¼\n");
+    printf("ç”¨æˆ·è´¦å·ï¼š%s\n", newUser.userId);
+    printf("æ ¡å›­å¡å·ï¼š%d\n", newUser.cardId);
+    printf("åˆå§‹å¯†ç ï¼š123456ï¼ˆæé†’ç”¨æˆ·åŠæ—¶ä¿®æ”¹ï¼‰\n");
 }
 
-// Ğ£Ô°¿¨³äÖµ
-void rechargeCard(SystemData *sys) {
+// æ ¡å›­å¡å……å€¼
+void rechargeCardbyAdmin(SystemData *sys) {
     int cardId;
     float amount;
 
-    printf("ÇëÊäÈëĞ£Ô°¿¨ºÅ£º");
+    printf("è¯·è¾“å…¥æ ¡å›­å¡å·ï¼š");
     scanf("%d", &cardId);
-    // ÕÒ¶ÔÓ¦µÄÓÃ»§
+    // æ‰¾å¯¹åº”çš„ç”¨æˆ·
     int userIdx = findUserByCardId(sys, cardId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃĞ£Ô°¿¨ÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥æ ¡å›­å¡ç”¨æˆ·ï¼\n");
         return;
     }
 
     User *user = &sys->users[userIdx];
-    // ¹ÒÊ§µÄ¿¨²»ÄÜ³äÖµ
+    // æŒ‚å¤±çš„å¡ä¸èƒ½å……å€¼
     if (user->status == 0) {
-        printf("¸Ã¿¨ÒÑ¹ÒÊ§£¬ÎŞ·¨³äÖµ£¡\n");
+        printf("è¯¥å¡å·²æŒ‚å¤±ï¼Œæ— æ³•å……å€¼ï¼\n");
         return;
     }
 
-    // ÊäÈë³äÖµ½ğ¶î
-    printf("ÇëÊäÈë³äÖµ½ğ¶î£¨±ØĞë´óÓÚ0£©£º");
+    // è¾“å…¥å……å€¼é‡‘é¢
+    printf("è¯·è¾“å…¥å……å€¼é‡‘é¢ï¼ˆå¿…é¡»å¤§äº0ï¼‰ï¼š");
     scanf("%f", &amount);
     if (amount <= 0) {
-        printf("³äÖµ½ğ¶îÎŞĞ§£¡\n");
+        printf("å……å€¼é‡‘é¢æ— æ•ˆï¼\n");
         return;
     }
 
-    // ¸üĞÂÓà¶î+±£´æ½»Ò×¼ÇÂ¼
+    // æ›´æ–°ä½™é¢+ä¿å­˜äº¤æ˜“è®°å½•
     user->balance += amount;
     saveTransRecord(sys, cardId, RECHARGE, amount);
-    printf("³äÖµ³É¹¦£¡\n");
-    printf("ÓÃ»§£º%s\n", user->name);
-    printf("Ô­Óà¶î£º%.2f Ôª\n", user->balance - amount);
-    printf("³äÖµ½ğ¶î£º%.2f Ôª\n", amount);
-    printf("µ±Ç°Óà¶î£º%.2f Ôª\n", user->balance);
+    printf("å……å€¼æˆåŠŸï¼\n");
+    printf("ç”¨æˆ·ï¼š%s\n", user->name);
+    printf("åŸä½™é¢ï¼š%.2f å…ƒ\n", user->balance - amount);
+    printf("å……å€¼é‡‘é¢ï¼š%.2f å…ƒ\n", amount);
+    printf("å½“å‰ä½™é¢ï¼š%.2f å…ƒ\n", user->balance);
 }
 
-// ²éÑ¯²¢ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+// æŸ¥è¯¢å¹¶ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
 void queryAndModifyUser(SystemData *sys) {
     char userId[ID_LEN];
-    printf("ÇëÊäÈëÒª²Ù×÷µÄÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    printf("è¯·è¾“å…¥è¦æ“ä½œçš„ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", userId);
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥ç”¨æˆ·ï¼\n");
         return;
     }
 
     User *user = &sys->users[userIdx];
-    // ÏÈÏÔÊ¾µ±Ç°ĞÅÏ¢
-    printf("\n===== µ±Ç°ÓÃ»§ĞÅÏ¢ =====\n");
-    printf("ÕËºÅ£º%s\n", user->userId);
-    printf("ĞÕÃû£º%s\n", user->name);
-    printf("Ğ£Ô°¿¨ºÅ£º%d\n", user->cardId);
-    printf("Óà¶î£º%.2f Ôª\n", user->balance);
-    printf("×´Ì¬£º%s\n", user->status == 1 ? "Õı³£" : "¹ÒÊ§");
+    // å…ˆæ˜¾ç¤ºå½“å‰ä¿¡æ¯
+    printf("\n===== å½“å‰ç”¨æˆ·ä¿¡æ¯ =====\n");
+    printf("è´¦å·ï¼š%s\n", user->userId);
+    printf("å§“åï¼š%s\n", user->name);
+    printf("æ ¡å›­å¡å·ï¼š%d\n", user->cardId);
+    printf("ä½™é¢ï¼š%.2f å…ƒ\n", user->balance);
+    printf("çŠ¶æ€ï¼š%s\n", user->status == 1 ? "æ­£å¸¸" : "æŒ‚å¤±");
     printf("========================\n");
 
-    // Ñ¡ÔñÊÇ·ñĞŞ¸Ä
-    printf("ÊÇ·ñĞŞ¸ÄÓÃ»§ĞÕÃû£¿£¨1=ÊÇ£¬0=·ñ£©£º");
+    // é€‰æ‹©æ˜¯å¦ä¿®æ”¹
+    printf("æ˜¯å¦ä¿®æ”¹ç”¨æˆ·å§“åï¼Ÿï¼ˆ1=æ˜¯ï¼Œ0=å¦ï¼‰ï¼š");
     int choice;
     scanf("%d", &choice);
     if (choice == 1) {
-        printf("ÇëÊäÈëĞÂĞÕÃû£º");
+        printf("è¯·è¾“å…¥æ–°å§“åï¼š");
         scanf("%s", user->name);
-        printf("ĞÕÃûĞŞ¸Ä³É¹¦£¡\n");
+        printf("å§“åä¿®æ”¹æˆåŠŸï¼\n");
     } else {
-        printf("ÒÑÈ¡ÏûĞŞ¸Ä£¡\n");
+        printf("å·²å–æ¶ˆä¿®æ”¹ï¼\n");
     }
 }
 
-// ÖØÖÃÓÃ»§ÃÜÂë£¨¸ÄÎª123456£©
+// é‡ç½®ç”¨æˆ·å¯†ç ï¼ˆæ”¹ä¸º123456ï¼‰
 void resetUserPwd(SystemData *sys) {
     char userId[ID_LEN];
-    printf("ÇëÊäÈëÒªÖØÖÃÃÜÂëµÄÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    printf("è¯·è¾“å…¥è¦é‡ç½®å¯†ç çš„ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", userId);
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥ç”¨æˆ·ï¼\n");
         return;
     }
 
-    // Ö±½ÓÖØÖÃÎª123456
+    // ç›´æ¥é‡ç½®ä¸º123456
     strcpy(sys->users[userIdx].pwd, "123456");
-    printf("ÃÜÂëÖØÖÃ³É¹¦£¡ĞÂÃÜÂë£º123456£¨ÌáĞÑÓÃ»§¼°Ê±ĞŞ¸Ä£©\n");
+    printf("å¯†ç é‡ç½®æˆåŠŸï¼æ–°å¯†ç ï¼š123456ï¼ˆæé†’ç”¨æˆ·åŠæ—¶ä¿®æ”¹ï¼‰\n");
 }
 
-// ¹ÜÀíÔ±Ö±½ÓĞŞ¸ÄÓÃ»§ÃÜÂë
+// ç®¡ç†å‘˜ç›´æ¥ä¿®æ”¹ç”¨æˆ·å¯†ç 
 void modifyUserPwdByAdmin(SystemData *sys) {
     char userId[ID_LEN];
     char newPwd[PWD_LEN];
-    printf("ÇëÊäÈëÒªĞŞ¸ÄÃÜÂëµÄÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    printf("è¯·è¾“å…¥è¦ä¿®æ”¹å¯†ç çš„ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", userId);
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥ç”¨æˆ·ï¼\n");
         return;
     }
 
-    // ÊäÈëĞÂÃÜÂë
-    printf("ÇëÊäÈëĞÂÃÜÂë£º");
+    // è¾“å…¥æ–°å¯†ç 
+    printf("è¯·è¾“å…¥æ–°å¯†ç ï¼š");
     scanf("%s", newPwd);
     strcpy(sys->users[userIdx].pwd, newPwd);
-    printf("ÃÜÂëĞŞ¸Ä³É¹¦£¡ĞÂÃÜÂëÒÑÉúĞ§£¡\n");
+    printf("å¯†ç ä¿®æ”¹æˆåŠŸï¼æ–°å¯†ç å·²ç”Ÿæ•ˆï¼\n");
 }
 
-// ¹ÜÀíÔ±°ïÓÃ»§¹ÒÊ§/½â¹Ò
+// ç®¡ç†å‘˜å¸®ç”¨æˆ·æŒ‚å¤±/è§£æŒ‚
 void toggleUserCardStatusByAdmin(SystemData *sys) {
     char userId[ID_LEN];
-    printf("ÇëÊäÈëÒª²Ù×÷µÄÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    printf("è¯·è¾“å…¥è¦æ“ä½œçš„ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", userId);
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥ç”¨æˆ·ï¼\n");
         return;
     }
 
     User *user = &sys->users[userIdx];
     if (user->status == 1) {
         user->status = 0;
-        printf("¹ÒÊ§³É¹¦£¡¸Ã¿¨ÒÑ¶³½á£¡\n");
+        printf("æŒ‚å¤±æˆåŠŸï¼è¯¥å¡å·²å†»ç»“ï¼\n");
     } else {
         user->status = 1;
-        printf("½â¹Ò³É¹¦£¡¸Ã¿¨ÒÑ»Ö¸´Õı³££¡\n");
+        printf("è§£æŒ‚æˆåŠŸï¼è¯¥å¡å·²æ¢å¤æ­£å¸¸ï¼\n");
     }
 }
 
-// ×¢ÏúĞ£Ô°¿¨£¨É¾³ıÓÃ»§£©
+// æ³¨é”€æ ¡å›­å¡ï¼ˆåˆ é™¤ç”¨æˆ·ï¼‰
 void cancelUserAccount(SystemData *sys) {
     char userId[ID_LEN];
-    printf("ÇëÊäÈëÒª×¢ÏúµÄÓÃ»§ÕËºÅ£¨Ñ§ºÅ£©£º");
+    printf("è¯·è¾“å…¥è¦æ³¨é”€çš„ç”¨æˆ·è´¦å·ï¼ˆå­¦å·ï¼‰ï¼š");
     scanf("%s", userId);
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("Î´ÕÒµ½¸ÃÓÃ»§£¡\n");
+        printf("æœªæ‰¾åˆ°è¯¥ç”¨æˆ·ï¼\n");
         return;
     }
 
     User *user = &sys->users[userIdx];
-    // È·ÈÏÊÇ·ñ×¢Ïú
-    printf("È·¶¨Òª×¢ÏúÓÃ»§¡¾%s£¨ÕËºÅ£º%s£©¡¿Âğ£¿£¨y=ÊÇ£¬n=·ñ£©£º", user->name, userId);
+    // ç¡®è®¤æ˜¯å¦æ³¨é”€
+    printf("ç¡®å®šè¦æ³¨é”€ç”¨æˆ·ã€%sï¼ˆè´¦å·ï¼š%sï¼‰ã€‘å—ï¼Ÿï¼ˆy=æ˜¯ï¼Œn=å¦ï¼‰ï¼š", user->name, userId);
     char confirm;
     scanf(" %c", &confirm);
     if (confirm != 'y' && confirm != 'Y') {
-        printf("ÒÑÈ¡Ïû×¢Ïú£¡\n");
+        printf("å·²å–æ¶ˆæ³¨é”€ï¼\n");
         return;
     }
 
-    //  É¾³ıÓÃ»§£ººóÃæµÄÓÃ»§ÍùÇ°ÒÆÒ»Î»
+    //  åˆ é™¤ç”¨æˆ·ï¼šåé¢çš„ç”¨æˆ·å¾€å‰ç§»ä¸€ä½
     for (int i = userIdx; i < sys->userCount - 1; i++) {
         sys->users[i] = sys->users[i + 1];
     }
-    sys->userCount--; // ÓÃ»§Êı-1
-    printf("×¢Ïú³É¹¦£¡¸ÃÓÃ»§ËùÓĞĞÅÏ¢ÒÑÉ¾³ı£¡\n");
+    sys->userCount--; // ç”¨æˆ·æ•°-1
+    printf("æ³¨é”€æˆåŠŸï¼è¯¥ç”¨æˆ·æ‰€æœ‰ä¿¡æ¯å·²åˆ é™¤ï¼\n");
 }

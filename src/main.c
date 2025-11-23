@@ -1,91 +1,93 @@
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <windows.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
-// ÏÔÊ¾½ÇÉ«Ñ¡Ôñ²Ëµ¥
+// æ˜¾ç¤ºè§’è‰²é€‰æ‹©èœå•
 void showRoleMenu() {
-    printf("\n===== Ğ£Ô°¿¨¹ÜÀíÏµÍ³ =====\n");
-    printf("ÇëÑ¡ÔñÓÃ»§½ÇÉ«\n");
-    printf("1. Ğ£Ô°¿¨ÓÃ»§\n");
-    printf("2. ¿¨Îñ¹ÜÀíÔ±\n");
-    printf("3. ÏµÍ³¹ÜÀíÔ±\n");
-    printf("0. ÍË³öÏµÍ³\n");
+    printf("\n===== æ ¡å›­å¡ç®¡ç†ç³»ç»Ÿ =====\n");
+    printf("è¯·é€‰æ‹©ç”¨æˆ·è§’è‰²\n");
+    printf("1. æ ¡å›­å¡ç”¨æˆ·\n");
+    printf("2. å¡åŠ¡ç®¡ç†å‘˜\n");
+    printf("3. ç³»ç»Ÿç®¡ç†å‘˜\n");
+    printf("0. é€€å‡ºç³»ç»Ÿ\n");
     printf("==========================\n");
-    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-3)£º");
+    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-3)ï¼š");
 }
 
-// ÏÔÊ¾Ğ£Ô°¿¨ÓÃ»§²Ëµ¥
+// æ˜¾ç¤ºæ ¡å›­å¡ç”¨æˆ·èœå•
 void showUserMenu() {
-    printf("\n===== Ğ£Ô°¿¨ÓÃ»§²Ëµ¥ =====\n");
-    printf("1. ÃÜÂëĞŞ¸Ä\n");
-    printf("2. ²éÑ¯Óà¶î\n");
-    printf("3. ²éÑ¯Ïû·Ñ¼ÇÂ¼\n");
-    printf("4. ¹ÒÊ§/½â¹ÒĞ£Ô°¿¨\n");
-    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("\n===== æ ¡å›­å¡ç”¨æˆ·èœå• =====\n");
+    printf("1. å¯†ç ä¿®æ”¹\n");
+    printf("2. æŸ¥è¯¢ä½™é¢\n");
+    printf("3. æŸ¥è¯¢æ¶ˆè´¹è®°å½•\n");
+    printf("4. æŒ‚å¤±/è§£æŒ‚æ ¡å›­å¡\n");
+    printf("0. é€€å‡ºç™»å½•ï¼ˆè¿”å›ä¸»èœå•ï¼‰\n");
     printf("==========================\n");
-    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-4)£º");
+    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-4)ï¼š");
 }
 
-// ÏÔÊ¾¿¨Îñ¹ÜÀíÔ±²Ëµ¥
+// æ˜¾ç¤ºå¡åŠ¡ç®¡ç†å‘˜èœå•
 void showCardAdminMenu() {
-    printf("\n===== ¿¨Îñ¹ÜÀíÔ±²Ëµ¥ =====\n");
-    printf("1. ´´½¨ÓÃ»§\n");
-    printf("2. Ğ£Ô°¿¨³äÖµ\n");
-    printf("3. ÓÃ»§ĞÅÏ¢²éÑ¯¼°ĞŞ¸Ä\n");
-    printf("4. Ğ£Ô°¿¨ÃÜÂëÖØÖÃ\n");
-    printf("5. Ğ£Ô°¿¨ÃÜÂëĞŞ¸Ä\n");
-    printf("6. ¹ÒÊ§/½â¹Ò\n");
-    printf("7. Ğ£Ô°¿¨×¢Ïú\n");
-    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("\n===== å¡åŠ¡ç®¡ç†å‘˜èœå• =====\n");
+    printf("1. åˆ›å»ºç”¨æˆ·\n");
+    printf("2. æ ¡å›­å¡å……å€¼\n");
+    printf("3. ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢åŠä¿®æ”¹\n");
+    printf("4. æ ¡å›­å¡å¯†ç é‡ç½®\n");
+    printf("5. æ ¡å›­å¡å¯†ç ä¿®æ”¹\n");
+    printf("6. æŒ‚å¤±/è§£æŒ‚\n");
+    printf("7. æ ¡å›­å¡æ³¨é”€\n");
+    printf("0. é€€å‡ºç™»å½•ï¼ˆè¿”å›ä¸»èœå•ï¼‰\n");
     printf("==========================\n");
-    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-7)£º");
+    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-7)ï¼š");
 }
 
-// ÏÔÊ¾ÏµÍ³¹ÜÀíÔ±²Ëµ¥
+// æ˜¾ç¤ºç³»ç»Ÿç®¡ç†å‘˜èœå•
 void showSystemAdminMenu() {
-    printf("\n===== ÏµÍ³¹ÜÀíÔ±²Ëµ¥ =====\n");
-    printf("1. Ìí¼Ó¿¨Îñ¹ÜÀíÔ±ÕËºÅ\n");
-    printf("2. É¾³ı¿¨Îñ¹ÜÀíÔ±ÕËºÅ\n");
-    printf("3. ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢\n");
-    printf("4. ²éÑ¯ËùÓĞ¿¨Îñ¹ÜÀíÔ±ĞÅÏ¢\n");
-    printf("0. ÍË³öµÇÂ¼£¨·µ»ØÖ÷²Ëµ¥£©\n");
+    printf("\n===== ç³»ç»Ÿç®¡ç†å‘˜èœå• =====\n");
+    printf("1. æ·»åŠ å¡åŠ¡ç®¡ç†å‘˜è´¦å·\n");
+    printf("2. åˆ é™¤å¡åŠ¡ç®¡ç†å‘˜è´¦å·\n");
+    printf("3. æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯\n");
+    printf("4. æŸ¥è¯¢æ‰€æœ‰å¡åŠ¡ç®¡ç†å‘˜ä¿¡æ¯\n");
+    printf("0. é€€å‡ºç™»å½•ï¼ˆè¿”å›ä¸»èœå•ï¼‰\n");
     printf("==========================\n");
-    printf("ÇëÊäÈëÄúµÄÑ¡Ôñ(0-5)£º");
+    printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(0-5)ï¼š");
 }
 
 int main() {
     SystemData sys;
-    initSystem(&sys); // ³õÊ¼»¯ÏµÍ³
+    initSystem(&sys); // åˆå§‹åŒ–ç³»ç»Ÿ
 
     int roleChoice;
     while (1) {
         showRoleMenu();
         scanf("%d", &roleChoice);
 
-        // Ğ£Ô°¿¨ÓÃ»§
+        // æ ¡å›­å¡ç”¨æˆ·
         if (roleChoice == 1) {
-            int isLogin = 0;       // ÊÇ·ñµÇÂ¼³É¹¦
-            int userIdx = -1;      // µÇÂ¼ÓÃ»§Ë÷Òı
-            int roleActive = 1;    // ¿ØÖÆ½ÇÉ«ÄÚÑ­»·£¨ÊÇ·ñ·µ»ØÖ÷²Ëµ¥£©
+            int isLogin = 0;       // æ˜¯å¦ç™»å½•æˆåŠŸ
+            int userIdx = -1;      // ç™»å½•ç”¨æˆ·ç´¢å¼•
+            int roleActive = 1;    // æ§åˆ¶è§’è‰²å†…å¾ªç¯ï¼ˆæ˜¯å¦è¿”å›ä¸»èœå•ï¼‰
             while (roleActive) {
                 if (!isLogin) {
-                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    // æœªç™»å½•æ—¶å¼ºåˆ¶å…ˆç™»å½•
                     char userId[ID_LEN], pwd[PWD_LEN];
-                    printf("\n===== Ğ£Ô°¿¨ÓÃ»§µÇÂ¼ =====\n");
-                    printf("ÇëÊäÈëÕËºÅ(Ñ§ºÅ)£º");
+                    printf("\n===== æ ¡å›­å¡ç”¨æˆ·ç™»å½• =====\n");
+                    printf("è¯·è¾“å…¥è´¦å·(å­¦å·)ï¼š");
                     scanf("%s", userId);
-                    printf("ÇëÊäÈëÃÜÂë£º");
+                    printf("è¯·è¾“å…¥å¯†ç ï¼š");
                     scanf("%s", pwd);
                     userIdx = userLogin(&sys, userId, pwd);
                     if (userIdx != -1) {
-                        isLogin = 1; // µÇÂ¼³É¹¦ºó½øÈë¹¦ÄÜ²Ëµ¥
+                        isLogin = 1; // ç™»å½•æˆåŠŸåè¿›å…¥åŠŸèƒ½èœå•
                     }
-                    printf("°´»Ø³µ¼ÌĞø...");
+                    printf("æŒ‰å›è½¦ç»§ç»­...");
                     getchar();
                     getchar();
                 } else {
-                    // ÒÑµÇÂ¼ÏÔÊ¾¹¦ÄÜ²Ëµ¥
+                    // å·²ç™»å½•æ˜¾ç¤ºåŠŸèƒ½èœå•
                     showUserMenu();
                     int userChoice;
                     scanf("%d", &userChoice);
@@ -96,15 +98,15 @@ int main() {
                         case 3: queryOwnConsumption(&sys, userIdx); break;
                         case 4: toggleOwnCardStatus(&sys, userIdx); break;
                         case 0:
-                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            printf("é€€å‡ºç™»å½•æˆåŠŸï¼Œè¿”å›ä¸»èœå•ï¼\n");
                             isLogin = 0;
-                            roleActive = 0; // ÍË³ö½ÇÉ«ÄÚÑ­»·£¬·µ»ØÖ÷²Ëµ¥
+                            roleActive = 0; // é€€å‡ºè§’è‰²å†…å¾ªç¯ï¼Œè¿”å›ä¸»èœå•
                             break;
-                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                        default: printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼\n"); break;
                     }
 
-                    if (isLogin) { // Î´ÍË³öÊ±µÈ´ı»Ø³µ
-                        printf("°´»Ø³µ¼ÌĞø...");
+                    if (isLogin) { // æœªé€€å‡ºæ—¶ç­‰å¾…å›è½¦
+                        printf("æŒ‰å›è½¦ç»§ç»­...");
                         getchar();
                         getchar();
                     }
@@ -112,25 +114,25 @@ int main() {
             }
         }
 
-        // ¿¨Îñ¹ÜÀíÔ±
+        // å¡åŠ¡ç®¡ç†å‘˜
         else if (roleChoice == 2) {
             int isLogin = 0;
             int adminIdx = -1;
             int roleActive = 1;
             while (roleActive) {
                 if (!isLogin) {
-                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    // æœªç™»å½•æ—¶å¼ºåˆ¶å…ˆç™»å½•
                     char adminId[ID_LEN], pwd[PWD_LEN];
-                    printf("\n===== ¿¨Îñ¹ÜÀíÔ±µÇÂ¼ =====\n");
-                    printf("ÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
+                    printf("\n===== å¡åŠ¡ç®¡ç†å‘˜ç™»å½• =====\n");
+                    printf("è¯·è¾“å…¥ç®¡ç†å‘˜è´¦å·ï¼š");
                     scanf("%s", adminId);
-                    printf("ÇëÊäÈëÃÜÂë£º");
+                    printf("è¯·è¾“å…¥å¯†ç ï¼š");
                     scanf("%s", pwd);
                     adminIdx = cardAdminLogin(&sys, adminId, pwd);
                     if (adminIdx != -1) {
                         isLogin = 1;
                     }
-                    printf("°´»Ø³µ¼ÌĞø...");
+                    printf("æŒ‰å›è½¦ç»§ç»­...");
                     getchar();
                     getchar();
                 } else {
@@ -147,15 +149,15 @@ int main() {
                         case 6: toggleUserCardStatusByAdmin(&sys); break;
                         case 7: cancelUserAccount(&sys); break;
                         case 0:
-                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            printf("é€€å‡ºç™»å½•æˆåŠŸï¼Œè¿”å›ä¸»èœå•ï¼\n");
                             isLogin = 0;
-                            roleActive = 0; // ·µ»ØÖ÷²Ëµ¥
+                            roleActive = 0; // è¿”å›ä¸»èœå•
                             break;
-                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                        default: printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼\n"); break;
                     }
 
                     if (isLogin) {
-                        printf("°´»Ø³µ¼ÌĞø...");
+                        printf("æŒ‰å›è½¦ç»§ç»­...");
                         getchar();
                         getchar();
                     }
@@ -163,23 +165,23 @@ int main() {
             }
         }
 
-        // ÏµÍ³¹ÜÀíÔ±
+        // ç³»ç»Ÿç®¡ç†å‘˜
         else if (roleChoice == 3) {
             int isLogin = 0;
             int roleActive = 1;
             while (roleActive) {
                 if (!isLogin) {
-                    // Î´µÇÂ¼Ê±Ç¿ÖÆÏÈµÇÂ¼
+                    // æœªç™»å½•æ—¶å¼ºåˆ¶å…ˆç™»å½•
                     char adminId[ID_LEN], pwd[PWD_LEN];
-                    printf("\n===== ÏµÍ³¹ÜÀíÔ±µÇÂ¼ =====\n");
-                    printf("ÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
+                    printf("\n===== ç³»ç»Ÿç®¡ç†å‘˜ç™»å½• =====\n");
+                    printf("è¯·è¾“å…¥ç®¡ç†å‘˜è´¦å·ï¼š");
                     scanf("%s", adminId);
-                    printf("ÇëÊäÈëÃÜÂë£º");
+                    printf("è¯·è¾“å…¥å¯†ç ï¼š");
                     scanf("%s", pwd);
                     if (systemAdminLogin(adminId, pwd)) {
                         isLogin = 1;
                     }
-                    printf("°´»Ø³µ¼ÌĞø...");
+                    printf("æŒ‰å›è½¦ç»§ç»­...");
                     getchar();
                     getchar();
                 } else {
@@ -193,15 +195,15 @@ int main() {
                         case 3: queryAllUsers(&sys); break;
                         case 4: queryAllCardAdmins(&sys); break;
                         case 0:
-                            printf("ÍË³öµÇÂ¼³É¹¦£¬·µ»ØÖ÷²Ëµ¥£¡\n");
+                            printf("é€€å‡ºç™»å½•æˆåŠŸï¼Œè¿”å›ä¸»èœå•ï¼\n");
                             isLogin = 0;
-                            roleActive = 0; // ·µ»ØÖ÷²Ëµ¥
+                            roleActive = 0; // è¿”å›ä¸»èœå•
                             break;
-                        default: printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n"); break;
+                        default: printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼\n"); break;
                     }
 
                     if (isLogin) {
-                        printf("°´»Ø³µ¼ÌĞø...");
+                        printf("æŒ‰å›è½¦ç»§ç»­...");
                         getchar();
                         getchar();
                     }
@@ -209,16 +211,16 @@ int main() {
             }
         }
 
-        // ÍË³öÏµÍ³
+        // é€€å‡ºç³»ç»Ÿ
         else if (roleChoice == 0) {
-            printf("¸ĞĞ»Ê¹ÓÃĞ£Ô°¿¨¹ÜÀíÏµÍ³£¬ÔÙ¼û£¡\n");
+            printf("æ„Ÿè°¢ä½¿ç”¨æ ¡å›­å¡ç®¡ç†ç³»ç»Ÿï¼Œå†è§ï¼\n");
             return 0;
         }
 
-        // ÊäÈë´íÎó
+        // è¾“å…¥é”™è¯¯
         else {
-            printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡\n");
-            printf("°´»Ø³µ¼ÌĞø...");
+            printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼\n");
+            printf("æŒ‰å›è½¦ç»§ç»­...");
             getchar();
             getchar();
         }

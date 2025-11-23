@@ -1,6 +1,8 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
 // 根据学号查找学生，返回学生索引
 // 如果未找到，返回-1

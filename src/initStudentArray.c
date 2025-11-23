@@ -1,6 +1,8 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
 // 初始化学生数组
 void initStudentArray(STS *arr) {

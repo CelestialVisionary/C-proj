@@ -1,54 +1,71 @@
-#ifndef STRUCT_H
+ï»¿#ifndef STRUCT_H
 #define STRUCT_H
 
-// ³£Á¿¶¨Òå£¨ĞÂÊÖºÃ¼Ç£¬Ö±½ÓÓÃÊı×Ö±íÊ¾ÉÏÏŞ£©
-#define MAX_USER 100        // ×î´óĞ£Ô°¿¨ÓÃ»§Êı
-#define MAX_CARD_ADMIN 20   // ×î´ó¿¨¹ÜÀíÔ±Êı
-#define MAX_RECORD 1000     // ×î´ó½»Ò×¼ÇÂ¼Êı
-#define ID_LEN 12           // ÕËºÅ³¤¶È£¨Ñ§ºÅ/¹ÜÀíÔ±ÕËºÅ£©
-#define PWD_LEN 10          // ÃÜÂë³¤¶È
-#define NAME_LEN 20         // ĞÕÃû³¤¶È
-#define TIME_LEN 20         // Ê±¼ä×Ö·û´®³¤¶È
+// å¸¸é‡å®šä¹‰ï¼ˆæ–°æ‰‹å¥½è®°ï¼Œç›´æ¥ç”¨æ•°å­—è¡¨ç¤ºä¸Šé™ï¼‰
+#define MAX_USER 100        // æœ€å¤§æ ¡å›­å¡ç”¨æˆ·æ•°
+#define MAX_CARD_ADMIN 20   // æœ€å¤§å¡ç®¡ç†å‘˜æ•°
+#define MAX_RECORD 1000     // æœ€å¤§äº¤æ˜“è®°å½•æ•°
+#define ID_LEN 12           // è´¦å·é•¿åº¦ï¼ˆå­¦å·/ç®¡ç†å‘˜è´¦å·ï¼‰
+#define PWD_LEN 10          // å¯†ç é•¿åº¦
+#define NAME_LEN 20         // å§“åé•¿åº¦
+#define TIME_LEN 20         // æ—¶é—´å­—ç¬¦ä¸²é•¿åº¦
 
-// ½»Ò×ÀàĞÍÃ¶¾Ù£º0=Ïû·Ñ£¬1=³äÖµ£¨ÓÃÊı×Ö·½±ãÅĞ¶Ï£©
+// äº¤æ˜“ç±»å‹æšä¸¾ï¼š0=æ¶ˆè´¹ï¼Œ1=å……å€¼ï¼ˆç”¨æ•°å­—æ–¹ä¾¿åˆ¤æ–­ï¼‰
 typedef enum {
     CONSUMPTION = 0,
     RECHARGE = 1
 } TransType;
 
-// Ğ£Ô°¿¨ÓÃ»§½á¹¹Ìå
+// æ ¡å›­å¡ç”¨æˆ·ç»“æ„ä½“
 typedef struct {
-    char userId[ID_LEN];    // ÓÃ»§ÕËºÅ£¨±ÈÈçÑ§ºÅ£©
-    char pwd[PWD_LEN];      // ÃÜÂë
-    char name[NAME_LEN];    // ĞÕÃû
-    int cardId;             // Ğ£Ô°¿¨ºÅ£¨Î¨Ò»±êÊ¶£©
-    float balance;          // ¿¨ÄÚÓà¶î
-    int status;             // ¿¨×´Ì¬£º1=Õı³££¬0=¹ÒÊ§
+    char userId[ID_LEN];    // ç”¨æˆ·è´¦å·ï¼ˆæ¯”å¦‚å­¦å·ï¼‰
+    char pwd[PWD_LEN];      // å¯†ç 
+    char name[NAME_LEN];    // å§“å
+    int cardId;             // æ ¡å›­å¡å·ï¼ˆå”¯ä¸€æ ‡è¯†ï¼‰
+    float balance;          // å¡å†…ä½™é¢
+    int status;             // å¡çŠ¶æ€ï¼š1=æ­£å¸¸ï¼Œ0=æŒ‚å¤±
 } User;
 
-// ¿¨¹ÜÀíÔ±½á¹¹Ìå
+// å¡ç®¡ç†å‘˜ç»“æ„ä½“
 typedef struct {
-    char adminId[ID_LEN];   // ¹ÜÀíÔ±ÕËºÅ
-    char pwd[PWD_LEN];      // ÃÜÂë
-    char name[NAME_LEN];    // ĞÕÃû
+    char adminId[ID_LEN];   // ç®¡ç†å‘˜è´¦å·
+    char pwd[PWD_LEN];      // å¯†ç 
+    char name[NAME_LEN];    // å§“å
 } CardAdmin;
 
-// ½»Ò×¼ÇÂ¼½á¹¹Ìå£¨´æ´¢Ïû·Ñ/³äÖµ¼ÇÂ¼£©
+// äº¤æ˜“è®°å½•ç»“æ„ä½“ï¼ˆå­˜å‚¨æ¶ˆè´¹/å……å€¼è®°å½•ï¼‰
 typedef struct {
-    int cardId;             // ¹ØÁªµÄĞ£Ô°¿¨ºÅ
-    TransType type;         // ½»Ò×ÀàĞÍ£¨Ïû·Ñ/³äÖµ£©
-    float amount;           // ½»Ò×½ğ¶î
-    char time[TIME_LEN];    // ½»Ò×Ê±¼ä£¨¸ñÊ½£ºÄê-ÔÂ-ÈÕ Ê±:·Ö:Ãë£©
+    int cardId;             // å…³è”çš„æ ¡å›­å¡å·
+    TransType type;         // äº¤æ˜“ç±»å‹ï¼ˆæ¶ˆè´¹/å……å€¼ï¼‰
+    float amount;           // äº¤æ˜“é‡‘é¢
+    char time[TIME_LEN];    // äº¤æ˜“æ—¶é—´ï¼ˆæ ¼å¼ï¼šå¹´-æœˆ-æ—¥ æ—¶:åˆ†:ç§’ï¼‰
 } TransRecord;
 
-// ÏµÍ³È«¾ÖÊı¾İ£¨´æ´¢ËùÓĞÓÃ»§¡¢¹ÜÀíÔ±¡¢½»Ò×¼ÇÂ¼£©
+// ç³»ç»Ÿå…¨å±€æ•°æ®ï¼ˆå­˜å‚¨æ‰€æœ‰ç”¨æˆ·ã€ç®¡ç†å‘˜ã€äº¤æ˜“è®°å½•ï¼‰
 typedef struct {
-    User users[MAX_USER];           // Ğ£Ô°¿¨ÓÃ»§Êı×é
-    int userCount;                  // µ±Ç°ÓÃ»§×ÜÊı
-    CardAdmin cardAdmins[MAX_CARD_ADMIN]; // ¿¨¹ÜÀíÔ±Êı×é
-    int cardAdminCount;             // µ±Ç°¿¨¹ÜÀíÔ±×ÜÊı
-    TransRecord records[MAX_RECORD]; // ½»Ò×¼ÇÂ¼Êı×é
-    int recordCount;                // µ±Ç°½»Ò×¼ÇÂ¼×ÜÊı
+    User users[MAX_USER];           // æ ¡å›­å¡ç”¨æˆ·æ•°ç»„
+    int userCount;                  // å½“å‰ç”¨æˆ·æ€»æ•°
+    CardAdmin cardAdmins[MAX_CARD_ADMIN]; // å¡ç®¡ç†å‘˜æ•°ç»„
+    int cardAdminCount;             // å½“å‰å¡ç®¡ç†å‘˜æ€»æ•°
+    TransRecord records[MAX_RECORD]; // äº¤æ˜“è®°å½•æ•°ç»„
+    int recordCount;                // å½“å‰äº¤æ˜“è®°å½•æ€»æ•°
 } SystemData;
+
+// å•ä¸ªå­¦ç”Ÿç»“æ„ä½“ï¼ˆä¸æ ¡å›­å¡ç³»ç»Ÿçš„ User åŒºåˆ†å¼€ï¼‰
+typedef struct {
+    char name[NAME_LEN];   // å§“å
+    int id;                // å­¦å·
+    float score;           // æˆç»©
+    int cardId;            // å­¦ç”Ÿå¡å·
+    float balance;         // ä½™é¢
+    int cardStatus;        // å¡çŠ¶æ€ï¼š1=æ­£å¸¸ 0=æŒ‚å¤±
+} ST;
+
+// å­¦ç”Ÿæ•°ç»„ç»“æ„ä½“ï¼ˆå°è£…å­¦ç”Ÿåˆ—è¡¨åŠå½“å‰æ•°é‡ï¼‰
+typedef struct {
+    ST students[MAX_USER]; // å­¦ç”Ÿæ•°ç»„
+    int size;              // å½“å‰å­¦ç”Ÿæ•°é‡
+} STS;
+// ================================================================================
 
 #endif

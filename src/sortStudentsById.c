@@ -1,6 +1,8 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
 // 按学号排序学生信息（冒泡排序）
 void sortStudentsById(STS *arr) {

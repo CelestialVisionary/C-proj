@@ -1,49 +1,51 @@
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
-// ÏµÍ³¹ÜÀíÔ±¹Ì¶¨ÕËºÅÃÜÂë
+// ç³»ç»Ÿç®¡ç†å‘˜å›ºå®šè´¦å·å¯†ç 
 #define SYS_ADMIN_ID "admin"
 #define SYS_ADMIN_PWD "123456"
 
-// Ğ£Ô°¿¨ÓÃ»§µÇÂ¼£¨³É¹¦·µ»ØÓÃ»§Ë÷Òı£¬Ê§°Ü·µ»Ø-1£©
+// æ ¡å›­å¡ç”¨æˆ·ç™»å½•ï¼ˆæˆåŠŸè¿”å›ç”¨æˆ·ç´¢å¼•ï¼Œå¤±è´¥è¿”å›-1ï¼‰
 int userLogin(SystemData *sys, char *userId, char *pwd) {
     int userIdx = findUserByUserId(sys, userId);
     if (userIdx == -1) {
-        printf("ÕËºÅ²»´æÔÚ£¡\n");
+        printf("è´¦å·ä¸å­˜åœ¨ï¼\n");
         return -1;
     }
-    // ±È½ÏÃÜÂëÊÇ·ñÒ»ÖÂ
+    // æ¯”è¾ƒå¯†ç æ˜¯å¦ä¸€è‡´
     if (strcmp(sys->users[userIdx].pwd, pwd) != 0) {
-        printf("ÃÜÂë´íÎó£¡\n");
+        printf("å¯†ç é”™è¯¯ï¼\n");
         return -1;
     }
-    printf("µÇÂ¼³É¹¦£¡»¶Ó­ %s£¡\n", sys->users[userIdx].name);
+    printf("ç™»å½•æˆåŠŸï¼æ¬¢è¿ %sï¼\n", sys->users[userIdx].name);
     return userIdx;
 }
 
-// ¿¨¹ÜÀíÔ±µÇÂ¼£¨³É¹¦·µ»Ø¹ÜÀíÔ±Ë÷Òı£¬Ê§°Ü·µ»Ø-1£©
+// å¡ç®¡ç†å‘˜ç™»å½•ï¼ˆæˆåŠŸè¿”å›ç®¡ç†å‘˜ç´¢å¼•ï¼Œå¤±è´¥è¿”å›-1ï¼‰
 int cardAdminLogin(SystemData *sys, char *adminId, char *pwd) {
     int adminIdx = findCardAdminByAdminId(sys, adminId);
     if (adminIdx == -1) {
-        printf("¹ÜÀíÔ±ÕËºÅ²»´æÔÚ£¡\n");
+        printf("ç®¡ç†å‘˜è´¦å·ä¸å­˜åœ¨ï¼\n");
         return -1;
     }
     if (strcmp(sys->cardAdmins[adminIdx].pwd, pwd) != 0) {
-        printf("ÃÜÂë´íÎó£¡\n");
+        printf("å¯†ç é”™è¯¯ï¼\n");
         return -1;
     }
-    printf("µÇÂ¼³É¹¦£¡»¶Ó­ %s ¹ÜÀíÔ±£¡\n", sys->cardAdmins[adminIdx].name);
+    printf("ç™»å½•æˆåŠŸï¼æ¬¢è¿ %s ç®¡ç†å‘˜ï¼\n", sys->cardAdmins[adminIdx].name);
     return adminIdx;
 }
 
-// ÏµÍ³¹ÜÀíÔ±µÇÂ¼£¨³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0£©
+// ç³»ç»Ÿç®¡ç†å‘˜ç™»å½•ï¼ˆæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0ï¼‰
 int systemAdminLogin(char *adminId, char *pwd) {
     if (strcmp(adminId, SYS_ADMIN_ID) == 0 && strcmp(pwd, SYS_ADMIN_PWD) == 0) {
-        printf("µÇÂ¼³É¹¦£¡»¶Ó­ÏµÍ³¹ÜÀíÔ±£¡\n");
+        printf("ç™»å½•æˆåŠŸï¼æ¬¢è¿ç³»ç»Ÿç®¡ç†å‘˜ï¼\n");
         return 1;
     }
-    printf("ÕËºÅ»òÃÜÂë´íÎó£¡\n");
+    printf("è´¦å·æˆ–å¯†ç é”™è¯¯ï¼\n");
     return 0;
 }

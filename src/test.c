@@ -1,8 +1,10 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
 // Missing function implementations needed for the test
 // Sort users by balance (ascending)
@@ -61,8 +63,7 @@ void sortAdminsByAdminId(SystemData *sys) {
 
 // Test user data structure
 void testUserStruct(SystemData *sys) {
-    printf("===测试用户数据结构===
-");
+    printf("===测试用户数据结构===");
     // Add test users
     strcpy(sys->users[0].userId, "2023001");
     strcpy(sys->users[0].name, "张三");
@@ -91,8 +92,7 @@ void testUserStruct(SystemData *sys) {
 
 // Test transaction record data structure
 void testRecordStruct(SystemData *sys) {
-    printf("\n===测试交易记录数据结构===
-");
+    printf("\n===测试交易记录数据结构===");
     // Add test records
     sys->records[0].cardId = 100001;
     sys->records[0].type = RECHARGE;
@@ -121,8 +121,7 @@ void testRecordStruct(SystemData *sys) {
 
 // Test administrator data structure
 void testAdminStruct(SystemData *sys) {
-    printf("\n===测试管理员数据结构===
-");
+    printf("\n===测试管理员数据结构===");
     // Add test administrators
     strcpy(sys->cardAdmins[0].adminId, "A002");
     strcpy(sys->cardAdmins[0].pwd, "123456");
@@ -147,7 +146,7 @@ void testAdminStruct(SystemData *sys) {
     printf("排序后账号：%s, %s\n", sys->cardAdmins[0].adminId, sys->cardAdmins[1].adminId);
 }
 
-int main() {
+int runTests() {
     SystemData sys;
     initSystem(&sys);
 

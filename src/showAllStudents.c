@@ -1,7 +1,9 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
-#include "struct.h"
-#include "funcation.h"
+#include "../include/struct.h"
+#include "../include/function.h"
 
 // 显示所有学生信息
 void showAllStudents(STS *arr) {
